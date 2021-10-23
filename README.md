@@ -29,7 +29,7 @@ When in the Godot dashboard, click the import button and navigate to the newly a
 Riot - Multiplayer team-based shooter based on Godot Engine
 Copyright © 2021 Garrett Howard
 
-All assets are distributed under the terms of the [Creative Commons Attribution-ShareAlike License version 4.0 (CC BY-SA 4.0)] (https://creativecommons.org/licenses/by-sa/4.0/legalcode)
+All assets are distributed under the terms of the [Creative Commons Attribution-ShareAlike License version 4.0 (CC BY-SA 4.0)](https://creativecommons.org/licenses/by-sa/4.0/legalcode)
 
 All code is distributed under the terms of the [GNU General Public License version 3.0 (GNU GPLv3)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
