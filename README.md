@@ -3,6 +3,7 @@ Riot is a free multiplayer team-based first-person shooter based on [Godot Engin
 
 ## How to play
 These are the default key bindings for playing Riot.
+
 - Movement
   - `W`: Move forward
   - `S`: Move backward
@@ -29,4 +30,4 @@ This program is free software: you can redistribute it and/or modify it under th
 
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License along with this program. If not, see [https://www.gnu.org/licenses/](https://www.gnu.org/licenses/).
+You should have received a copy of the GNU General Public License along with this program. If not, see [gnu.org/licenses](https://www.gnu.org/licenses/).
