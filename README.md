@@ -4,16 +4,19 @@ Riot is a free multiplayer team-based first-person shooter based on [Godot Engin
 ## How to play
 These are the default key bindings for playing Riot.
 
-- Movement
-  - `W`: Move forward
-  - `S`: Move backward
-  - `A`: Move left
-  - `D`: Move right
-  - `Shift`: Walk slowly
-  - `Space`: Jump or climb
-- Camera
-  - `C`: Switch between first-person and third-person camera modes
-  - `Escape`: Free mouse cursor from the game
+### Movement
+
+- `W`: Move forward
+- `S`: Move backward
+- `A`: Move left
+- `D`: Move right
+- `Shift`: Walk slowly
+- `Space`: Jump or climb
+
+### Camera
+
+- `C`: Switch between first-person and third-person camera modes
+- `Escape`: Free mouse cursor from the game
 
 ## Running
 This game requires [Godot Engine](https://godotengine.org/) to run and compile.
