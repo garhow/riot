@@ -7,6 +7,10 @@ extends KinematicBody
 # Movement configuration
 export var acceleration = 6
 export var climb_speed = 6.8
+export var crouch_acceleration = 6.2
+export var crouch_height = 0.6
+export var crouch_speed = 1.5
+export var default_height = 1.7
 export var gravity = 12.8
 export var jump_speed = 5.4
 export var sprint_speed = 5
@@ -81,7 +85,7 @@ func climb_check():
 # Movement input and velocity
 ##
 
-func player_movements():
+func player_movements(delta):
 	if Input.is_action_pressed("move_forward"):
 		direction -= transform.basis.z
 	if Input.is_action_pressed("move_backward"):
@@ -90,10 +94,18 @@ func player_movements():
 		direction -= transform.basis.x / 2
 	if Input.is_action_pressed("move_right"):
 		direction += transform.basis.x / 2
-	if Input.is_action_pressed("walk"):
-		speed = walk_speed
+	
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		fall.y = jump_speed
+	if Input.is_action_pressed("walk"):
+		speed = walk_speed
+	if Input.is_action_pressed("crouch"):
+		$Collision.shape.height -= crouch_acceleration * delta
+		speed = crouch_speed
+	else:
+		$Collision.shape.height += crouch_acceleration * delta
+	
+	$Collision.shape.height = clamp($Collision.shape.height, crouch_height, default_height)
 
 func wall_climb():
 	if Input.is_action_pressed("jump") and not is_on_floor() and climb == true:
@@ -135,7 +147,7 @@ func _physics_process(delta):
 		fall.y -= delta * gravity
 	
 	# Player movement
-	player_movements()
+	player_movements(delta)
 	
 	# Normalize direction after movement is processed
 	direction = direction.normalized()

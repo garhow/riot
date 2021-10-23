@@ -29,8 +29,8 @@ When in the Godot dashboard, click the import button and navigate to the newly a
 Riot - Multiplayer team-based shooter based on Godot Engine
 Copyright © 2021 Garrett Howard
 
-This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+All assets are distributed under the terms of the [Creative Commons Attribution-ShareAlike License version 4.0 (CC BY-SA 4.0)] (https://creativecommons.org/licenses/by-sa/4.0/legalcode)
 
-This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+All code is distributed under the terms of the [GNU General Public License version 3.0 (GNU GPLv3)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
-You should have received a copy of the GNU General Public License along with this program. If not, see [gnu.org/licenses](https://www.gnu.org/licenses/).
+See [LICENSE](/riot/tree/LICENSE) for more details.

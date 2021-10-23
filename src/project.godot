@@ -15,6 +15,11 @@ config/description="A multiplayer team-based shooter"
 run/main_scene="res://scenes/test_level.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/borderless=true
+window/size/fullscreen=true
+
 [input]
 
 move_forward={
@@ -64,4 +69,8 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+quality/driver/fallback_to_gles2=true
+quality/filters/use_nearest_mipmap_filter=true
+quality/filters/msaa=2
+quality/filters/use_fxaa=true
 environment/default_environment="res://default_env.tres"
