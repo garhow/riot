@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/checkerboard.png-05d491db9083f31a8a4a6ee461316550.stex"
+path="res://.import/death_vignette.png-3a5c67058dd76f5c18ae490b01cf0bd7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/checkerboard.png"
-dest_files=[ "res://.import/checkerboard.png-05d491db9083f31a8a4a6ee461316550.stex" ]
+source_file="res://textures/ui/effects/death_vignette.png"
+dest_files=[ "res://.import/death_vignette.png-3a5c67058dd76f5c18ae490b01cf0bd7.stex" ]
 
 [params]
 
@@ -18,17 +18,17 @@ compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
-compress/normal_map=1
-flags/repeat=true
+compress/normal_map=0
+flags/repeat=0
 flags/filter=true
 flags/mipmaps=true
 flags/anisotropic=true
-flags/srgb=1
+flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
-process/HDR_as_SRGB=false
+process/HDR_as_SRGB=true
 process/invert_color=false
 stream=false
 size_limit=0
-detect_3d=false
+detect_3d=true
 svg/scale=1.0

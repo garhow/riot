@@ -11,10 +11,11 @@ export var crouch_acceleration = 6.2
 export var crouch_height = 0.6
 export var crouch_speed = 1.5
 export var default_height = 1.7
-export var gravity = 12.8
-export var jump_speed = 5.4
+export var gravity = 19.2
+export var jump_speed = 6.4
+export var max_health = 100
 export var sprint_speed = 5
-export var walk_speed = 2
+export var sneak_speed = 2
 
 # Mouse configuration
 export var mouse_acceleration = 18
@@ -25,13 +26,19 @@ export var mouse_sensitivity = 0.1
 ##
 
 var climb : bool
+var dead : bool = false
 var direction : Vector3
 var fall : Vector3
 var horizontal_velocity : Vector3
 var movement : Vector3
 var speed : float
-var target : Vector3
 var velocity : Vector3
+
+##
+# Player-specific variables
+##
+
+var health : float = max_health
 
 ##
 # Node variables
@@ -72,6 +79,23 @@ func mouse_toggle():
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 ##
+# Health system
+##
+
+func death(delta):
+	if dead == false:
+		$HUD/Animation.play("Death")
+		dead = true
+
+func health_update(delta):
+	if health > 0:
+		$HUD/Health.text = str(health)
+	else:
+		health = clamp(health, 0, max_health)
+		$HUD/Health.text = str(health)
+		death(delta)
+
+##
 # Raycast collision checks
 ##
 
@@ -97,8 +121,8 @@ func player_movements(delta):
 	
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		fall.y = jump_speed
-	if Input.is_action_pressed("walk"):
-		speed = walk_speed
+	if Input.is_action_pressed("sneak"):
+		speed = sneak_speed
 	if Input.is_action_pressed("crouch"):
 		$Collision.shape.height -= crouch_acceleration * delta
 		speed = crouch_speed
@@ -110,13 +134,18 @@ func player_movements(delta):
 func wall_climb():
 	if Input.is_action_pressed("jump") and not is_on_floor() and climb == true:
 		fall.y = climb_speed
+		health -= 10
 
 ##
 # Event functions
 ##
 
 func _ready():
+	# Capture mouse
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
+	# Health counter
+	$HUD/Health.text = str(health)
 
 func _input(event):
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
@@ -135,6 +164,9 @@ func _physics_process(delta):
 	mouse_toggle()
 	camera_toggle()
 	
+	# Health
+	health_update(delta)
+	
 	# Raycast collision checks
 	climb_check()
 	
@@ -143,7 +175,7 @@ func _physics_process(delta):
 	
 	# Enforce gravity
 	move_and_slide(fall, Vector3.UP)
-	if not is_on_floor():
+	if not is_on_floor() and climb != true:
 		fall.y -= delta * gravity
 	
 	# Player movement

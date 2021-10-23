@@ -27,11 +27,12 @@ metallic = 0.5
 uv1_triplanar = true
 
 [sub_resource type="ProceduralSky" id=5]
-sky_top_color = Color( 0.509804, 0.827451, 1, 1 )
-sky_horizon_color = Color( 1, 1, 1, 1 )
-ground_bottom_color = Color( 1, 1, 1, 1 )
-ground_horizon_color = Color( 1, 1, 1, 1 )
-sun_energy = 2.0
+sky_top_color = Color( 0.414504, 0.670535, 0.843906, 1 )
+sky_horizon_color = Color( 0.971869, 0.918917, 0.869274, 1 )
+ground_bottom_color = Color( 0.971869, 0.918917, 0.869274, 1 )
+ground_horizon_color = Color( 0.971869, 0.918917, 0.869274, 1 )
+sun_angle_min = 0.0
+sun_angle_max = 0.0
 
 [sub_resource type="Environment" id=6]
 background_mode = 2
@@ -52,17 +53,6 @@ mesh = SubResource( 1 )
 material/0 = SubResource( 2 )
 
 [node name="Collision" type="CollisionShape" parent="Floor"]
-shape = SubResource( 3 )
-
-[node name="Ramp" type="StaticBody" parent="."]
-transform = Transform( 3.53553, -3.53553, 0, 3.53553, 3.53553, 0, 0, 0, 5, 10, -1, 0 )
-
-[node name="Mesh" type="MeshInstance" parent="Ramp"]
-transform = Transform( 1, -1.02806e-08, 0, -1.02806e-08, 1, 0, 0, 0, 1, 0, 0, 0 )
-mesh = SubResource( 1 )
-material/0 = SubResource( 4 )
-
-[node name="Collision" type="CollisionShape" parent="Ramp"]
 shape = SubResource( 3 )
 
 [node name="Cube" type="StaticBody" parent="."]
@@ -94,6 +84,46 @@ mesh = SubResource( 1 )
 material/0 = SubResource( 4 )
 
 [node name="Collision" type="CollisionShape" parent="Cube3"]
+shape = SubResource( 3 )
+
+[node name="Cube4" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2, -4 )
+
+[node name="Mesh" type="MeshInstance" parent="Cube4"]
+mesh = SubResource( 1 )
+material/0 = SubResource( 4 )
+
+[node name="Collision" type="CollisionShape" parent="Cube4"]
+shape = SubResource( 3 )
+
+[node name="Cube5" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2, 4 )
+
+[node name="Mesh" type="MeshInstance" parent="Cube5"]
+mesh = SubResource( 1 )
+material/0 = SubResource( 4 )
+
+[node name="Collision" type="CollisionShape" parent="Cube5"]
+shape = SubResource( 3 )
+
+[node name="Cube6" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 7.5, 0 )
+
+[node name="Mesh" type="MeshInstance" parent="Cube6"]
+mesh = SubResource( 1 )
+material/0 = SubResource( 4 )
+
+[node name="Collision" type="CollisionShape" parent="Cube6"]
+shape = SubResource( 3 )
+
+[node name="Cube7" type="StaticBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 4.5, 0 )
+
+[node name="Mesh" type="MeshInstance" parent="Cube7"]
+mesh = SubResource( 1 )
+material/0 = SubResource( 4 )
+
+[node name="Collision" type="CollisionShape" parent="Cube7"]
 shape = SubResource( 3 )
 
 [node name="Wall" type="StaticBody" parent="."]
