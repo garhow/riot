@@ -1,7 +1,7 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://scenes/player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://textures/generic/grid.png" type="Texture" id=2]
+[ext_resource path="res://textures/generic/grid.png" type="Texture" id=1]
+[ext_resource path="res://scenes/controllers/player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://textures/generic/wall.png" type="Texture" id=3]
 
 [sub_resource type="CubeMesh" id=1]
@@ -9,7 +9,7 @@
 [sub_resource type="SpatialMaterial" id=2]
 flags_vertex_lighting = true
 flags_world_triplanar = true
-albedo_texture = ExtResource( 2 )
+albedo_texture = ExtResource( 1 )
 metallic = 0.3
 roughness = 0.5
 refraction_enabled = true
@@ -26,29 +26,12 @@ albedo_texture = ExtResource( 3 )
 metallic = 0.5
 uv1_triplanar = true
 
-[sub_resource type="ProceduralSky" id=5]
-sky_top_color = Color( 0.414504, 0.670535, 0.843906, 1 )
-sky_horizon_color = Color( 0.971869, 0.918917, 0.869274, 1 )
-ground_bottom_color = Color( 0.971869, 0.918917, 0.869274, 1 )
-ground_horizon_color = Color( 0.971869, 0.918917, 0.869274, 1 )
-sun_angle_min = 0.0
-sun_angle_max = 0.0
-
-[sub_resource type="Environment" id=6]
-background_mode = 2
-background_sky = SubResource( 5 )
-background_color = Color( 0.666667, 0.839216, 0.854902, 1 )
-fog_enabled = true
-fog_color = Color( 1, 1, 1, 0.392157 )
-fog_depth_begin = 50.0
-
-[node name="Test Level" type="Spatial"]
+[node name="Map" type="Spatial"]
 
 [node name="Floor" type="StaticBody" parent="."]
 transform = Transform( 20, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0 )
 
 [node name="Mesh" type="MeshInstance" parent="Floor"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 mesh = SubResource( 1 )
 material/0 = SubResource( 2 )
 
@@ -136,8 +119,18 @@ material/0 = SubResource( 4 )
 [node name="Collision" type="CollisionShape" parent="Wall"]
 shape = SubResource( 3 )
 
-[node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
+[node name="Spawns" type="Spatial" parent="."]
+
+[node name="Spawn" type="Position3D" parent="Spawns"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 10, 0 )
+
+[node name="Spawn2" type="Position3D" parent="Spawns"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 5, 4 )
+
+[node name="Spawn3" type="Position3D" parent="Spawns"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 5, -4 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
 
 [node name="Sun" type="DirectionalLight" parent="."]
 transform = Transform( 0.683981, 0.528716, 0.502623, -0.589011, -0.00623607, 0.808101, 0.43039, -0.848776, 0.307154, 2, 13, 10 )
@@ -145,5 +138,5 @@ light_color = Color( 0.839216, 0.803922, 0.713726, 1 )
 light_bake_mode = 2
 shadow_enabled = true
 
-[node name="Environment" type="WorldEnvironment" parent="."]
-environment = SubResource( 6 )
+[editable path="Player"]
+[editable path="Player/Body"]
