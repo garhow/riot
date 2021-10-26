@@ -18,6 +18,9 @@ func create_client(address : String, port : int):
 	var _connection_failed = get_tree().connect("connection_failed", self, "_on_connection_failed")
 	var _server_disconnected = get_tree().connect("server_disconnected", self, "_on_server_disconnected")
 	var network = NetworkedMultiplayerENet.new()
+	if get_tree().is_network_server() == true: # harvey298 - prevent joining to self - could create a bug later
+		print("Found Server, not joining")
+		return
 	network.create_client(address, port)
 	get_tree().set_network_peer(network)
 	print("Client created")

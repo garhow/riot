@@ -6,15 +6,15 @@
 [ext_resource path="res://scenes/menu/menu.gd" type="Script" id=4]
 [ext_resource path="res://themes/main_theme.tres" type="Theme" id=5]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=1]
 size = 96
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=2]
 size = 28
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=3]
 size = 28
 font_data = ExtResource( 3 )
 
@@ -59,7 +59,7 @@ size_flags_horizontal = 0
 margin_right = 214.0
 margin_bottom = 116.0
 mouse_filter = 0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 text = "Riot"
 
 [node name="Grid" type="GridContainer" parent="Container/HBoxContainer"]
@@ -73,7 +73,7 @@ margin_right = 214.0
 margin_bottom = 47.0
 size_flags_horizontal = 3
 theme = ExtResource( 1 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 action_mode = 0
 text = "Host"
 align = 0
@@ -84,7 +84,7 @@ margin_right = 214.0
 margin_bottom = 98.0
 size_flags_horizontal = 3
 theme = ExtResource( 1 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 action_mode = 0
 text = "Join"
 align = 0
@@ -95,7 +95,7 @@ margin_right = 214.0
 margin_bottom = 149.0
 size_flags_horizontal = 3
 theme = ExtResource( 1 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
 action_mode = 0
 text = "Quit"
 align = 0
@@ -107,7 +107,7 @@ __meta__ = {
 margin_right = 924.0
 margin_bottom = 500.0
 size_flags_vertical = 1
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 3 )
 text = "v0.04
 "
 align = 2

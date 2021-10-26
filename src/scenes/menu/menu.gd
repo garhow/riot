@@ -6,6 +6,12 @@ func _ready():
 	$Container/Version.text = "v"+Game.version
 
 func _on_Host_pressed():
+	var server_incept_patch = true # harvey298 - incase anyone wants to have some fun :)
+	
+	if server_incept_patch == true:
+		if get_tree().is_network_server() == true: # harvey298 - prevent server inception - could create a bug later
+			print("Found Server already active, not proceeding")
+			return
 	Game.spawn_map(0)
 	Game.spawn_controller("1", 0)
 	Game.toggle_menu()
