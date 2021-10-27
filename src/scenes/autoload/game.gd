@@ -21,7 +21,7 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
 func _process(delta):
-	if Input.is_action_just_pressed("ui_cancel") and Net.is_server():
+	if Input.is_action_just_pressed("ui_cancel") and Net.is_connected_to_server():
 		toggle_menu()
 
 func spawn_map(map_id : int):
@@ -33,6 +33,12 @@ func spawn_controller(name : String, type: int):
 	controller.name = name
 	main.add_child(controller)
 	controller.get_node("Body").global_transform = get_spawn()
+
+func remove_map():
+	main.remove_child(main.get_node("Map"))
+
+func remove_controller(id):
+	main.remove_child(main.get_node(str(id)))
 
 func get_spawn():
 	var spawns = main.get_node_or_null("Map/Spawns")

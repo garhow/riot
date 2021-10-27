@@ -18,11 +18,11 @@ font_data = ExtResource( 3 )
 size = 28
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=4]
 size = 20
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=5]
 size = 18
 font_data = ExtResource( 2 )
 
@@ -37,7 +37,7 @@ __meta__ = {
 [node name="Background" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.215686, 0, 0, 0.784314 )
+color = Color( 0.215686, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -57,26 +57,26 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Container"]
+[node name="VBox" type="VBoxContainer" parent="Container"]
 margin_right = 214.0
 margin_bottom = 500.0
 mouse_filter = 0
 size_flags_horizontal = 0
 
-[node name="Title" type="Label" parent="Container/VBoxContainer"]
+[node name="Title" type="Label" parent="Container/VBox"]
 margin_right = 214.0
 margin_bottom = 116.0
 mouse_filter = 0
 custom_fonts/font = SubResource( 1 )
 text = "Riot"
 
-[node name="VBox" type="VBoxContainer" parent="Container/VBoxContainer"]
+[node name="VBox" type="VBoxContainer" parent="Container/VBox"]
 margin_top = 120.0
 margin_right = 214.0
 margin_bottom = 371.0
 mouse_filter = 0
 
-[node name="Host" type="Button" parent="Container/VBoxContainer/VBox"]
+[node name="Host" type="Button" parent="Container/VBox/VBox"]
 margin_right = 214.0
 margin_bottom = 47.0
 size_flags_horizontal = 3
@@ -86,7 +86,7 @@ action_mode = 0
 text = "Host"
 align = 0
 
-[node name="Join" type="Button" parent="Container/VBoxContainer/VBox"]
+[node name="Join" type="Button" parent="Container/VBox/VBox"]
 margin_top = 51.0
 margin_right = 214.0
 margin_bottom = 98.0
@@ -97,7 +97,19 @@ action_mode = 0
 text = "Join"
 align = 0
 
-[node name="Settings" type="Button" parent="Container/VBoxContainer/VBox"]
+[node name="Disconnect" type="Button" parent="Container/VBox/VBox"]
+visible = false
+margin_top = 102.0
+margin_right = 214.0
+margin_bottom = 149.0
+size_flags_horizontal = 3
+theme = ExtResource( 1 )
+custom_fonts/font = SubResource( 2 )
+action_mode = 0
+text = "Disconnect"
+align = 0
+
+[node name="Settings" type="Button" parent="Container/VBox/VBox"]
 margin_top = 102.0
 margin_right = 214.0
 margin_bottom = 149.0
@@ -108,7 +120,7 @@ action_mode = 0
 text = "Settings"
 align = 0
 
-[node name="Credits" type="Button" parent="Container/VBoxContainer/VBox"]
+[node name="Credits" type="Button" parent="Container/VBox/VBox"]
 margin_top = 153.0
 margin_right = 214.0
 margin_bottom = 200.0
@@ -119,7 +131,7 @@ action_mode = 0
 text = "Credits"
 align = 0
 
-[node name="Quit" type="Button" parent="Container/VBoxContainer/VBox"]
+[node name="Quit" type="Button" parent="Container/VBox/VBox"]
 margin_top = 204.0
 margin_right = 214.0
 margin_bottom = 251.0
@@ -154,7 +166,9 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Join" type="Control" parent="Center"]
+[node name="Join" type="Control" parent="Center" groups=[
+"submenu",
+]]
 visible = false
 margin_left = 512.0
 margin_top = 300.0
@@ -195,7 +209,7 @@ __meta__ = {
 [node name="Title" type="Label" parent="Center/Join/Panel/VBox"]
 margin_right = 384.0
 margin_bottom = 25.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 4 )
 text = "Join"
 align = 1
 __meta__ = {
@@ -277,7 +291,9 @@ margin_bottom = 210.0
 theme = ExtResource( 5 )
 text = "Connect"
 
-[node name="Credits" type="Control" parent="Center"]
+[node name="Credits" type="Control" parent="Center" groups=[
+"submenu",
+]]
 visible = false
 margin_left = 512.0
 margin_top = 300.0
@@ -318,7 +334,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="Center/Credits/Panel/VBox"]
 margin_right = 384.0
 margin_bottom = 25.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 4 )
 text = "Credits"
 align = 1
 
@@ -353,7 +369,7 @@ margin_right = 372.0
 margin_bottom = 22.0
 size_flags_horizontal = 3
 theme = ExtResource( 1 )
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 text = "Core Team"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -390,7 +406,7 @@ margin_right = 372.0
 margin_bottom = 22.0
 size_flags_horizontal = 3
 theme = ExtResource( 1 )
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 text = "Art & Modelling"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -424,7 +440,7 @@ margin_right = 372.0
 margin_bottom = 22.0
 size_flags_horizontal = 3
 theme = ExtResource( 1 )
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 text = "Programming"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -459,7 +475,7 @@ margin_right = 372.0
 margin_bottom = 22.0
 size_flags_horizontal = 3
 theme = ExtResource( 1 )
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 text = "Game Engine"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -489,9 +505,10 @@ margin_bottom = 360.0
 theme = ExtResource( 1 )
 text = "Close"
 
-[connection signal="pressed" from="Container/VBoxContainer/VBox/Host" to="." method="_on_Host_pressed"]
-[connection signal="pressed" from="Container/VBoxContainer/VBox/Join" to="." method="_on_Join_pressed"]
-[connection signal="pressed" from="Container/VBoxContainer/VBox/Credits" to="." method="_on_Credits_pressed"]
-[connection signal="pressed" from="Container/VBoxContainer/VBox/Quit" to="." method="_on_Quit_pressed"]
+[connection signal="pressed" from="Container/VBox/VBox/Host" to="." method="_on_Host_pressed"]
+[connection signal="pressed" from="Container/VBox/VBox/Join" to="." method="_on_Join_pressed"]
+[connection signal="pressed" from="Container/VBox/VBox/Disconnect" to="." method="_on_Disconnect_pressed"]
+[connection signal="pressed" from="Container/VBox/VBox/Credits" to="." method="_on_Credits_pressed"]
+[connection signal="pressed" from="Container/VBox/VBox/Quit" to="." method="_on_Quit_pressed"]
 [connection signal="pressed" from="Center/Join/Panel/VBox/Connect" to="." method="_on_Connect_pressed"]
 [connection signal="pressed" from="Center/Credits/Panel/VBox/Close" to="." method="_on_Credits_Close_pressed"]
