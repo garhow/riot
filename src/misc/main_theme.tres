@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=10 format=2]
+[gd_resource type="Theme" load_steps=12 format=2]
 
 [ext_resource path="res://fonts/xolonium/ttf/Xolonium-Regular.ttf" type="DynamicFontData" id=1]
 
@@ -68,6 +68,8 @@ corner_radius_bottom_left = 2
 shadow_color = Color( 0, 0, 0, 0.196078 )
 shadow_size = 4
 
+[sub_resource type="StyleBoxEmpty" id=9]
+
 [sub_resource type="StyleBoxFlat" id=6]
 content_margin_left = 6.0
 content_margin_right = 6.0
@@ -90,6 +92,8 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 shadow_size = 2
 
+[sub_resource type="StyleBoxEmpty" id=10]
+
 [sub_resource type="DynamicFont" id=8]
 font_data = ExtResource( 1 )
 
@@ -108,6 +112,8 @@ Button/styles/normal = SubResource( 4 )
 Button/styles/pressed = SubResource( 5 )
 Fonts/fonts/large = null
 Fonts/fonts/normal = null
+HSeparator/constants/separation = 4
+HSeparator/styles/separator = SubResource( 9 )
 LineEdit/colors/clear_button_color = Color( 0.88, 0.88, 0.88, 1 )
 LineEdit/colors/clear_button_color_pressed = Color( 1, 1, 1, 1 )
 LineEdit/colors/cursor_color = Color( 0.94, 0.94, 0.94, 1 )
@@ -141,3 +147,5 @@ Tabs/styles/panel = null
 Tabs/styles/tab_bg = null
 Tabs/styles/tab_disabled = null
 Tabs/styles/tab_fg = null
+VSeparator/constants/separation = 4
+VSeparator/styles/separator = SubResource( 10 )

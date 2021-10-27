@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://misc/main_theme.tres" type="Theme" id=1]
 [ext_resource path="res://fonts/xolonium/ttf/Xolonium-Bold.ttf" type="DynamicFontData" id=2]
@@ -17,6 +17,14 @@ font_data = ExtResource( 3 )
 [sub_resource type="DynamicFont" id=3]
 size = 28
 font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 20
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 18
+font_data = ExtResource( 2 )
 
 [node name="Main Menu" type="Control"]
 anchor_right = 1.0
@@ -49,26 +57,26 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="HBoxContainer" type="VBoxContainer" parent="Container"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Container"]
 margin_right = 214.0
 margin_bottom = 500.0
 mouse_filter = 0
 size_flags_horizontal = 0
 
-[node name="Title" type="Label" parent="Container/HBoxContainer"]
+[node name="Title" type="Label" parent="Container/VBoxContainer"]
 margin_right = 214.0
 margin_bottom = 116.0
 mouse_filter = 0
 custom_fonts/font = SubResource( 1 )
 text = "Riot"
 
-[node name="Grid" type="GridContainer" parent="Container/HBoxContainer"]
+[node name="VBox" type="VBoxContainer" parent="Container/VBoxContainer"]
 margin_top = 120.0
 margin_right = 214.0
-margin_bottom = 269.0
+margin_bottom = 371.0
 mouse_filter = 0
 
-[node name="Host" type="Button" parent="Container/HBoxContainer/Grid"]
+[node name="Host" type="Button" parent="Container/VBoxContainer/VBox"]
 margin_right = 214.0
 margin_bottom = 47.0
 size_flags_horizontal = 3
@@ -78,7 +86,7 @@ action_mode = 0
 text = "Host"
 align = 0
 
-[node name="Join" type="Button" parent="Container/HBoxContainer/Grid"]
+[node name="Join" type="Button" parent="Container/VBoxContainer/VBox"]
 margin_top = 51.0
 margin_right = 214.0
 margin_bottom = 98.0
@@ -89,10 +97,32 @@ action_mode = 0
 text = "Join"
 align = 0
 
-[node name="Quit" type="Button" parent="Container/HBoxContainer/Grid"]
+[node name="Settings" type="Button" parent="Container/VBoxContainer/VBox"]
 margin_top = 102.0
 margin_right = 214.0
 margin_bottom = 149.0
+size_flags_horizontal = 3
+theme = ExtResource( 1 )
+custom_fonts/font = SubResource( 2 )
+action_mode = 0
+text = "Settings"
+align = 0
+
+[node name="Credits" type="Button" parent="Container/VBoxContainer/VBox"]
+margin_top = 153.0
+margin_right = 214.0
+margin_bottom = 200.0
+size_flags_horizontal = 3
+theme = ExtResource( 1 )
+custom_fonts/font = SubResource( 2 )
+action_mode = 0
+text = "Credits"
+align = 0
+
+[node name="Quit" type="Button" parent="Container/VBoxContainer/VBox"]
+margin_top = 204.0
+margin_right = 214.0
+margin_bottom = 251.0
 size_flags_horizontal = 3
 theme = ExtResource( 1 )
 custom_fonts/font = SubResource( 2 )
@@ -116,7 +146,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="Center" type="CenterContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -124,7 +154,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="JoinContainer" type="Control" parent="CenterContainer"]
+[node name="Join" type="Control" parent="Center"]
 visible = false
 margin_left = 512.0
 margin_top = 300.0
@@ -136,7 +166,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Panel" type="Panel" parent="CenterContainer/JoinContainer"]
+[node name="Panel" type="Panel" parent="Center/Join"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -144,13 +174,13 @@ anchor_bottom = 0.5
 margin_left = -212.0
 margin_top = -100.0
 margin_right = 212.0
-margin_bottom = 100.0
+margin_bottom = 150.0
 theme = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/JoinContainer/Panel"]
+[node name="VBox" type="VBoxContainer" parent="Center/Join/Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 20.0
@@ -162,19 +192,38 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="AddressContainer" type="VBoxContainer" parent="CenterContainer/JoinContainer/Panel/VBoxContainer"]
+[node name="Title" type="Label" parent="Center/Join/Panel/VBox"]
 margin_right = 384.0
-margin_bottom = 60.0
+margin_bottom = 25.0
+custom_fonts/font = SubResource( 5 )
+text = "Join"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Separator" type="HSeparator" parent="Center/Join/Panel/VBox"]
+margin_top = 29.0
+margin_right = 384.0
+margin_bottom = 33.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Address" type="VBoxContainer" parent="Center/Join/Panel/VBox"]
+margin_top = 37.0
+margin_right = 384.0
+margin_bottom = 99.0
 size_flags_vertical = 3
 theme = ExtResource( 1 )
 
-[node name="Label" type="Label" parent="CenterContainer/JoinContainer/Panel/VBoxContainer/AddressContainer"]
+[node name="Label" type="Label" parent="Center/Join/Panel/VBox/Address"]
 margin_right = 384.0
 margin_bottom = 20.0
 theme = ExtResource( 1 )
 text = "Server Address"
 
-[node name="Address" type="LineEdit" parent="CenterContainer/JoinContainer/Panel/VBoxContainer/AddressContainer"]
+[node name="Input" type="LineEdit" parent="Center/Join/Panel/VBox/Address"]
 margin_top = 24.0
 margin_right = 384.0
 margin_bottom = 50.0
@@ -187,20 +236,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PortContainer" type="VBoxContainer" parent="CenterContainer/JoinContainer/Panel/VBoxContainer"]
-margin_top = 64.0
+[node name="Port" type="VBoxContainer" parent="Center/Join/Panel/VBox"]
+margin_top = 103.0
 margin_right = 384.0
-margin_bottom = 124.0
+margin_bottom = 166.0
 size_flags_vertical = 3
 theme = ExtResource( 1 )
 
-[node name="Label" type="Label" parent="CenterContainer/JoinContainer/Panel/VBoxContainer/PortContainer"]
+[node name="Label" type="Label" parent="Center/Join/Panel/VBox/Port"]
 margin_right = 384.0
 margin_bottom = 20.0
 theme = ExtResource( 1 )
 text = "Port"
 
-[node name="Port" type="LineEdit" parent="CenterContainer/JoinContainer/Panel/VBoxContainer/PortContainer"]
+[node name="Input" type="LineEdit" parent="Center/Join/Panel/VBox/Port"]
 margin_top = 24.0
 margin_right = 384.0
 margin_bottom = 50.0
@@ -213,14 +262,236 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Connect" type="Button" parent="CenterContainer/JoinContainer/Panel/VBoxContainer"]
-margin_top = 128.0
+[node name="Separator2" type="HSeparator" parent="Center/Join/Panel/VBox"]
+margin_top = 170.0
 margin_right = 384.0
-margin_bottom = 160.0
+margin_bottom = 174.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Connect" type="Button" parent="Center/Join/Panel/VBox"]
+margin_top = 178.0
+margin_right = 384.0
+margin_bottom = 210.0
 theme = ExtResource( 5 )
 text = "Connect"
 
-[connection signal="pressed" from="Container/HBoxContainer/Grid/Host" to="." method="_on_Host_pressed"]
-[connection signal="pressed" from="Container/HBoxContainer/Grid/Join" to="." method="_on_Join_pressed"]
-[connection signal="pressed" from="Container/HBoxContainer/Grid/Quit" to="." method="_on_Quit_pressed"]
-[connection signal="pressed" from="CenterContainer/JoinContainer/Panel/VBoxContainer/Connect" to="." method="_on_Connect_pressed"]
+[node name="Credits" type="Control" parent="Center"]
+visible = false
+margin_left = 512.0
+margin_top = 300.0
+margin_right = 512.0
+margin_bottom = 300.0
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="Center/Credits"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.0
+margin_top = -200.0
+margin_right = 212.0
+margin_bottom = 200.0
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox" type="VBoxContainer" parent="Center/Credits/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 20.0
+margin_right = -20.0
+margin_bottom = -20.0
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Center/Credits/Panel/VBox"]
+margin_right = 384.0
+margin_bottom = 25.0
+custom_fonts/font = SubResource( 5 )
+text = "Credits"
+align = 1
+
+[node name="Separator" type="HSeparator" parent="Center/Credits/Panel/VBox"]
+margin_top = 29.0
+margin_right = 384.0
+margin_bottom = 33.0
+
+[node name="Scroll" type="ScrollContainer" parent="Center/Credits/Panel/VBox"]
+margin_top = 37.0
+margin_right = 384.0
+margin_bottom = 316.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 1 )
+
+[node name="VBox" type="VBoxContainer" parent="Center/Credits/Panel/VBox/Scroll"]
+margin_right = 384.0
+margin_bottom = 335.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 1 )
+
+[node name="Core Team" type="VBoxContainer" parent="Center/Credits/Panel/VBox/Scroll/VBox"]
+margin_right = 372.0
+margin_bottom = 123.0
+size_flags_horizontal = 3
+theme = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="Center/Credits/Panel/VBox/Scroll/VBox/Core Team"]
+margin_right = 372.0
+margin_bottom = 22.0
+size_flags_horizontal = 3
+theme = ExtResource( 1 )
+custom_fonts/font = SubResource( 4 )
+text = "Core Team"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="List" type="Label" parent="Center/Credits/Panel/VBox/Scroll/VBox/Core Team"]
+margin_top = 26.0
+margin_right = 372.0
+margin_bottom = 115.0
+size_flags_horizontal = 3
+theme = ExtResource( 1 )
+text = "Garrett Howard
+harvey298
+Eagle617
+CorMemory"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator" type="HSeparator" parent="Center/Credits/Panel/VBox/Scroll/VBox/Core Team"]
+margin_top = 119.0
+margin_right = 372.0
+margin_bottom = 123.0
+
+[node name="Art & Modelling" type="VBoxContainer" parent="Center/Credits/Panel/VBox/Scroll/VBox"]
+margin_top = 127.0
+margin_right = 372.0
+margin_bottom = 181.0
+size_flags_horizontal = 3
+theme = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="Center/Credits/Panel/VBox/Scroll/VBox/Art & Modelling"]
+margin_right = 372.0
+margin_bottom = 22.0
+size_flags_horizontal = 3
+theme = ExtResource( 1 )
+custom_fonts/font = SubResource( 4 )
+text = "Art & Modelling"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="List" type="Label" parent="Center/Credits/Panel/VBox/Scroll/VBox/Art & Modelling"]
+margin_top = 26.0
+margin_right = 372.0
+margin_bottom = 46.0
+size_flags_horizontal = 3
+theme = ExtResource( 1 )
+text = "CorMemory"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator" type="HSeparator" parent="Center/Credits/Panel/VBox/Scroll/VBox/Art & Modelling"]
+margin_top = 50.0
+margin_right = 372.0
+margin_bottom = 54.0
+
+[node name="Programming" type="VBoxContainer" parent="Center/Credits/Panel/VBox/Scroll/VBox"]
+margin_top = 185.0
+margin_right = 372.0
+margin_bottom = 262.0
+size_flags_horizontal = 3
+theme = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="Center/Credits/Panel/VBox/Scroll/VBox/Programming"]
+margin_right = 372.0
+margin_bottom = 22.0
+size_flags_horizontal = 3
+theme = ExtResource( 1 )
+custom_fonts/font = SubResource( 4 )
+text = "Programming"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="List" type="Label" parent="Center/Credits/Panel/VBox/Scroll/VBox/Programming"]
+margin_top = 26.0
+margin_right = 372.0
+margin_bottom = 69.0
+size_flags_horizontal = 3
+theme = ExtResource( 1 )
+text = "Garrett Howard
+harvey298"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator" type="HSeparator" parent="Center/Credits/Panel/VBox/Scroll/VBox/Programming"]
+margin_top = 73.0
+margin_right = 372.0
+margin_bottom = 77.0
+
+[node name="Game Engine" type="VBoxContainer" parent="Center/Credits/Panel/VBox/Scroll/VBox"]
+margin_top = 266.0
+margin_right = 372.0
+margin_bottom = 335.0
+size_flags_horizontal = 3
+theme = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="Center/Credits/Panel/VBox/Scroll/VBox/Game Engine"]
+margin_right = 372.0
+margin_bottom = 22.0
+size_flags_horizontal = 3
+theme = ExtResource( 1 )
+custom_fonts/font = SubResource( 4 )
+text = "Game Engine"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="List" type="Label" parent="Center/Credits/Panel/VBox/Scroll/VBox/Game Engine"]
+margin_top = 26.0
+margin_right = 372.0
+margin_bottom = 69.0
+size_flags_horizontal = 3
+theme = ExtResource( 1 )
+text = "Godot Engine by Juan Linietsky, Ariel Manzur, and other contributors"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Separator2" type="HSeparator" parent="Center/Credits/Panel/VBox"]
+margin_top = 320.0
+margin_right = 384.0
+margin_bottom = 324.0
+
+[node name="Close" type="Button" parent="Center/Credits/Panel/VBox"]
+margin_top = 328.0
+margin_right = 384.0
+margin_bottom = 360.0
+theme = ExtResource( 1 )
+text = "Close"
+
+[connection signal="pressed" from="Container/VBoxContainer/VBox/Host" to="." method="_on_Host_pressed"]
+[connection signal="pressed" from="Container/VBoxContainer/VBox/Join" to="." method="_on_Join_pressed"]
+[connection signal="pressed" from="Container/VBoxContainer/VBox/Credits" to="." method="_on_Credits_pressed"]
+[connection signal="pressed" from="Container/VBoxContainer/VBox/Quit" to="." method="_on_Quit_pressed"]
+[connection signal="pressed" from="Center/Join/Panel/VBox/Connect" to="." method="_on_Connect_pressed"]
+[connection signal="pressed" from="Center/Credits/Panel/VBox/Close" to="." method="_on_Credits_Close_pressed"]
