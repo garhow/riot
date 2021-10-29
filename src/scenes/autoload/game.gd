@@ -20,7 +20,7 @@ func _ready():
 	randomize()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("ui_cancel") and Net.is_connected_to_server():
 		toggle_menu()
 

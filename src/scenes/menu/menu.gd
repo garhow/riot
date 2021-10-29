@@ -3,7 +3,7 @@ extends Control
 func _ready():
 	$Container/Version.text = "v"+Game.version
 
-func _process(delta):
+func _process(_delta):
 	network_check()
 
 ##
@@ -13,7 +13,7 @@ func _process(delta):
 func _on_Host_pressed():
 	var server_incept_patch = true # harvey298 - incase anyone wants to have some fun :)
 	
-	if server_incept_patch == true and Net.is_server(): # harvey298 - prevent server inception - could create a bug later
+	if server_incept_patch == true and get_tree().network_peer != null and get_tree().is_network_server(): # harvey298 - prevent server inception - could create a bug later
 			print("Already connected to a server, not proceeding.")
 			return
 	Game.spawn_map(0)

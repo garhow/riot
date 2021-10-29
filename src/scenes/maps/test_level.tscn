@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://textures/generic/grid.png" type="Texture" id=1]
+[ext_resource path="res://textures/generic/dark/texture_01.png" type="Texture" id=1]
 [ext_resource path="res://scenes/controllers/player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://textures/generic/wall.png" type="Texture" id=3]
+[ext_resource path="res://textures/generic/orange/texture_01.png" type="Texture" id=3]
 
 [sub_resource type="CubeMesh" id=1]
 
@@ -24,6 +24,7 @@ flags_vertex_lighting = true
 flags_world_triplanar = true
 albedo_texture = ExtResource( 3 )
 metallic = 0.5
+uv1_scale = Vector3( 0.5, 0.5, 0.5 )
 uv1_triplanar = true
 
 [node name="Map" type="Spatial"]
@@ -133,10 +134,12 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 5, -4 )
 [node name="Player" parent="." instance=ExtResource( 2 )]
 
 [node name="Sun" type="DirectionalLight" parent="."]
-transform = Transform( 0.683981, 0.528716, 0.502623, -0.589011, -0.00623607, 0.808101, 0.43039, -0.848776, 0.307154, 2, 13, 10 )
+transform = Transform( 0.464833, -0.8384, -0.284633, -0.309976, -0.455228, 0.834675, -0.829365, -0.299756, -0.471488, -5.98475, 19.2049, -26.5339 )
 light_color = Color( 0.839216, 0.803922, 0.713726, 1 )
 light_bake_mode = 2
 shadow_enabled = true
+directional_shadow_blend_splits = true
+directional_shadow_max_distance = 512.0
 
 [editable path="Player"]
 [editable path="Player/Body"]
