@@ -32,4 +32,4 @@ All assets are distributed under the terms of the [Creative Commons Attribution-
 
 All code is distributed under the terms of the [GNU General Public License version 3.0 (GNU GPLv3)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
-See [LICENSE](/riot/tree/LICENSE) for more details.
+See LICENSE for more details.
