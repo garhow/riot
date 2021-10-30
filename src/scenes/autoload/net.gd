@@ -17,7 +17,7 @@ func _physics_process(_delta):
 				world_state[0].push_back([body.owner.name, body.translation, body.rotation.y, body.get_node("Head").rotation.x, body.get_parent().velocity, body.is_on_floor()])
 			rpc_unreliable("update_world", world_state)
 		else:
-			rpc_unreliable_id(1, "update_peer", Game.player.body.translation, Game.player.body.rotation.y, Game.player.head.rotation.x, Game.player.velocity, Game.player.body.is_on_floor())
+			rpc_unreliable_id(1, "update_peer", Game.player.body.translation, Game.player.body.rotation.y, Game.player.head.rotation.x, Game.player.velocity)
 
 func is_connected_to_server():
 	if get_tree().network_peer == null:
@@ -69,13 +69,12 @@ puppet func update_world(world_state : Array):
 			continue
 		Game.main.get_node(player[0]).update(player[1], player[2], player[3], player[4], player[5])
 
-remote func update_peer(t : Vector3, ry : float, hrx : float , v : Vector3, f : bool):
+remote func update_peer(t : Vector3, ry : float, hrx : float , v : Vector3):
 	var peer = Game.main.get_node(str(get_tree().get_rpc_sender_id())).body
 	peer.translation = t
 	peer.rotation.y = ry
 	peer.get_node("Head").rotation.x = hrx
-	peer.vel = v
-	peer.is_on_floor = f
+	peer.velocity = v
 
 ##
 # Events
