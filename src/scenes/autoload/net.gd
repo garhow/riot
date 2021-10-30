@@ -67,7 +67,7 @@ puppet func update_world(world_state : Array):
 	for player in world_state[0]:
 		if int(player[0]) == get_tree().get_network_unique_id():
 			continue
-		Game.main.get_node(player[0]).update(player[1], player[2], player[3], player[4], player[5])
+		Game.main.get_node(player[0]).update(player[1], player[2], player[3], player[4])
 
 remote func update_peer(t : Vector3, ry : float, hrx : float , v : Vector3):
 	var peer = Game.main.get_node(str(get_tree().get_rpc_sender_id())).body
