@@ -35,6 +35,7 @@ var health : float = max_health
 # Nodes
 ##
 
+onready var body = $Body
 onready var head = $Body/Head # Player head
 onready var footcast = $Body/Footcast
 onready var headcast = $Body/Headcast
@@ -57,21 +58,21 @@ func _input(event):
 		head.rotation.x = clamp(head.rotation.x, deg2rad(-89), deg2rad(89))
 
 func _physics_process(delta):
-	direction = Vector3()
-	$Body.move_and_slide(fall, Vector3.UP)
 	if not $Body.is_on_floor():
 		fall.y -= delta * gravity
+	if Input.is_action_pressed("jump") and $Body.is_on_wall() and not headcast.is_colliding():
+		if footcast.is_colliding() and ribcast.is_colliding():
+			fall.y = climb_speed
 	process_input(delta)
 	process_motion(delta)
+	direction = Vector3()
+	$Body.move_and_slide(fall, Vector3.UP)
 
 func process_input(delta):
 	direction += (Input.get_action_strength("move_backward") - Input.get_action_strength("move_forward")) * $Body.global_transform.basis.z
 	direction += (Input.get_action_strength("move_right") - Input.get_action_strength("move_left")) * $Body.global_transform.basis.x
 	
-	if Input.is_action_just_pressed("jump"):
-		if $Body.is_on_wall() and footcast.is_colliding() and not headcast.is_colliding() and ribcast.is_colliding():
-			fall.y = climb_speed
-		elif $Body.is_on_floor():
+	if Input.is_action_just_pressed("jump") and $Body.is_on_floor():
 			fall.y = jump_speed
 	
 	if Input.is_action_pressed("sneak"):

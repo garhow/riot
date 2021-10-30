@@ -1,5 +1,12 @@
 extends Node
 class_name Peer
 
-#func update(translation : Vector3, rotation_y : float, head_rotation_x : float, velocity : Vector3, is_on_floor : bool):
-#	pass
+var velocity : Vector3
+
+onready var body = get_node("Body")
+
+func update(t : Vector3, ry : float, hrx : float, vel : Vector3, f : bool):
+	body.translation = t
+	body.transform.basis = Basis(Vector3(body.rotation.x, ry, body.rotation.z))
+	body.get_node("Head").rotation.x = hrx
+	body.get_parent().velocity = vel

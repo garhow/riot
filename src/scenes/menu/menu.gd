@@ -2,6 +2,7 @@ extends Control
 	
 func _ready():
 	$Container/Version.text = "v"+Game.version
+	load_settings()
 
 func _process(_delta):
 	network_check()
@@ -51,6 +52,30 @@ func _on_Disconnect_pressed():
 	Net.server_disconnect()
 
 ##
+# Settings
+##
+
+func _on_Settings_pressed():
+	hide_all_submenus()
+	toggle_menu($Center/Settings)
+
+func _on_SaveChanges_pressed():
+	Save.user_data = {
+		"user": {
+			"username": $Center/Settings/Tabs/User/Username/Input.text
+		}, "video": {
+			"fullscreen": $Center/Settings/Tabs/Video/Fullscreen.pressed
+		}
+	}
+	Save.save_data()
+	
+func load_settings():
+	# User
+	$Center/Settings/Tabs/User/Username/Input.text = Save.user_data.get("user").get("username") # Username
+	# Video
+	$Center/Settings/Tabs/Video/Fullscreen.pressed = Save.user_data.get("video").get("fullscreen") # Fullscreen
+
+##
 # Credits
 ##
 
@@ -80,10 +105,12 @@ func toggle_menu(control):
 
 func network_check():
 	if Net.is_connected_to_server():
+		$Background.color = Color8(55, 0, 0, 125)
 		$Container/VBox/VBox/Host.visible = false
 		$Container/VBox/VBox/Join.visible = false
 		$Container/VBox/VBox/Disconnect.visible = true
 	else:
+		$Background.color = Color8(55, 0, 0, 255)
 		$Container/VBox/VBox/Host.visible = true
 		$Container/VBox/VBox/Join.visible = true
 		$Container/VBox/VBox/Disconnect.visible = false

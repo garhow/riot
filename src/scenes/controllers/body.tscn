@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/menu/player_hud.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/weapons/test_gun.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CapsuleShape" id=1]
 margin = 0.001
@@ -56,7 +55,9 @@ tracks/0/keys = {
 "values": [ Vector3( 0, 0, 0 ), Vector3( 0, -0.075, 0 ) ]
 }
 
-[node name="Body" type="KinematicBody"]
+[node name="Body" type="KinematicBody" groups=[
+"players",
+]]
 
 [node name="Collision" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
@@ -85,21 +86,19 @@ playback_default_blend_time = 0.2
 
 [node name="Weaponroot" type="Position3D" parent="Head"]
 
-[node name="Test Gun" parent="Head/Weaponroot" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.05, -0.05, -0.366513 )
-visible = false
+[node name="AK47" type="MeshInstance" parent="Head/Weaponroot"]
 
 [node name="Footcast" type="RayCast" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -0.3 )
 enabled = true
-cast_to = Vector3( 0, 0, -1 )
+cast_to = Vector3( 0, 0, -1.5 )
 
 [node name="Headcast" type="RayCast" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -0.3 )
 enabled = true
-cast_to = Vector3( 0, 0, -1 )
+cast_to = Vector3( 0, 0, -1.5 )
 
 [node name="Ribcast" type="RayCast" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, -0.3 )
 enabled = true
-cast_to = Vector3( 0, 0, -1 )
+cast_to = Vector3( 0, 0, -1.5 )

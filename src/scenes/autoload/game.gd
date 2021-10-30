@@ -1,6 +1,6 @@
 extends Node
 
-var player
+var player : Player
 
 var version = ProjectSettings.get_setting("application/config/version")
 
