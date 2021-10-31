@@ -74,7 +74,7 @@ remote func update_peer(t : Vector3, ry : float, hrx : float , v : Vector3):
 	peer.translation = t
 	peer.rotation.y = ry
 	peer.get_node("Head").rotation.x = hrx
-	peer.velocity = v
+	peer.get_parent().velocity = v
 
 ##
 # Events
