@@ -1,0 +1,137 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://materials/weapons/shotgun/primary.tres" type="Material" id=1]
+[ext_resource path="res://materials/weapons/shotgun/secondary.tres" type="Material" id=2]
+[ext_resource path="res://materials/weapons/shotgun/shell.tres" type="Material" id=3]
+[ext_resource path="res://scenes/weapons/shotgun.gd" type="Script" id=4]
+
+[sub_resource type="CubeMesh" id=1]
+material = ExtResource( 1 )
+size = Vector3( 0.35, 0.75, 5 )
+
+[sub_resource type="CubeMesh" id=2]
+material = ExtResource( 2 )
+size = Vector3( 0.5, 0.5, 2 )
+
+[sub_resource type="CubeMesh" id=3]
+material = ExtResource( 2 )
+size = Vector3( 0.3, 0.6, 1.5 )
+
+[sub_resource type="ParticlesMaterial" id=6]
+flag_align_y = true
+flag_rotate_y = true
+direction = Vector3( 10, 2, 0 )
+spread = 30.0
+initial_velocity = 12.0
+initial_velocity_random = 0.1
+tangential_accel = -3.0
+scale = 1.2
+
+[sub_resource type="CylinderMesh" id=7]
+material = ExtResource( 3 )
+top_radius = 0.125
+bottom_radius = 0.125
+height = 0.45
+
+[sub_resource type="Animation" id=4]
+resource_name = "Fire"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 12.605, 0, 0 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:translation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0.0627734, -0.0115569 ), Vector3( 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Pump"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 30, 30, 0 ), Vector3( 30, 30, 0 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:translation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0.196093, 0 ), Vector3( 0, 0.196093, 0 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Handle:translation")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -0.35, -1 ), Vector3( 0, -0.35, -1 ), Vector3( 8.24329e-08, -0.35, -0.133932 ), Vector3( 0, -0.35, -1 ), Vector3( 0, -0.35, -1 ) ]
+}
+
+[node name="Shotgun" type="Spatial"]
+script = ExtResource( 4 )
+
+[node name="Body" type="MeshInstance" parent="."]
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="Handle" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 2.98023e-08, 1, 0, -2.98023e-08, 1.78814e-07, 1, 0, -0.35, -1 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="Stock" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.707107, -0.707107, 0, 0.707107, 0.707107, 0, -0.375889, 2.82495 )
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="Shell" type="Particles" parent="."]
+transform = Transform( 0.999999, 0, 0, 0, 0.999999, 1.49011e-08, 0, -1.49011e-08, 0.999999, 0.287452, 0, 0 )
+emitting = false
+amount = 1
+lifetime = 0.8
+visibility_aabb = AABB( 0, -2.5, 0, 5, 5, 5 )
+draw_order = 1
+process_material = SubResource( 6 )
+draw_pass_1 = SubResource( 7 )
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+playback_default_blend_time = 0.1
+anims/Fire = SubResource( 4 )
+anims/Pump = SubResource( 5 )
+
+[connection signal="animation_finished" from="Animation" to="." method="_on_Animation_animation_finished"]
+[connection signal="animation_started" from="Animation" to="." method="_on_Animation_animation_started"]

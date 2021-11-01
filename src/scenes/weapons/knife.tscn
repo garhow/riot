@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://materials/weapons/knife/primary.tres" type="Material" id=1]
+[ext_resource path="res://materials/weapons/knife/secondary.tres" type="Material" id=2]
+[ext_resource path="res://scenes/weapons/knife.gd" type="Script" id=3]
+
+[sub_resource type="CubeMesh" id=1]
+material = ExtResource( 1 )
+size = Vector3( 0.2, 2, 0.5 )
+
+[sub_resource type="CubeMesh" id=4]
+material = ExtResource( 2 )
+size = Vector3( 0.35, 1, 0.6 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "Stab"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 8.82725, 19.4593, 66.5235 ), Vector3( -0.881119, -62.0925, 78.544 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:translation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( -0.931288, -0.303386, 0 ), Vector3( -0.436329, -0.235967, -0.761817 ), Vector3( 0, 0, 0 ) ]
+}
+
+[node name="Knife" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+script = ExtResource( 3 )
+
+[node name="Body" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="Handle" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
+mesh = SubResource( 4 )
+material/0 = null
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+playback_default_blend_time = 0.1
+anims/Stab = SubResource( 2 )
