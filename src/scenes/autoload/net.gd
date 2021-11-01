@@ -4,6 +4,8 @@ const PORT : int = 3524
 const MAX_PLAYERS : int = 12
 const HOST_RATE : float = 1.0/20.0
 const PEER_RATE : float = 1.0/60.0
+const VERSION : int = 002
+
 
 ##
 # Functions
@@ -25,6 +27,10 @@ func is_connected_to_server():
 	else:
 		return true
 
+####
+## Client networking functions
+####
+
 func create_client(address : String, port : int):
 	var _peer_connected = get_tree().connect("network_peer_connected", self, "_on_peer_connected")
 	var _peer_disconnected = get_tree().connect("network_peer_disconnected", self, "_on_peer_disconnected")
@@ -35,6 +41,21 @@ func create_client(address : String, port : int):
 	network.create_client(address, port)
 	get_tree().set_network_peer(network)
 	print(Log.get_prefix("Networking", "Info"), "Now connecting to ", address, ":", str(port), "!")
+
+# Request movement information from server
+func update_player_local(dbf, drl):
+	rpc_id(1, "update_player", dbf, drl)
+
+remote func update_peer(t : Vector3, ry : float, hrx : float , v : Vector3):
+	var peer = Game.main.get_node(str(get_tree().get_rpc_sender_id())).body
+	peer.translation = t
+	peer.rotation.y = ry
+	peer.get_node("Head").rotation.x = hrx
+	peer.get_parent().velocity = v
+
+####
+## Server networking functions
+####
 
 func create_server(port : int):
 	var _peer_connected = get_tree().connect("network_peer_connected", self, "_on_peer_connected")
@@ -59,22 +80,14 @@ func server_disconnect():
 	get_tree().network_peer = null
 	Game.menu.visible = true
 
-##
-# RPC functions
-##
+remotesync func update_player(dbf, drl):
+	Game.main.get_node(str(get_tree().get_rpc_sender_id())).direction += dbf + drl
 
 puppet func update_world(world_state : Array):
 	for player in world_state[0]:
 		if int(player[0]) == get_tree().get_network_unique_id():
 			continue
 		Game.main.get_node(player[0]).update(player[1], player[2], player[3], player[4])
-
-remote func update_peer(t : Vector3, ry : float, hrx : float , v : Vector3):
-	var peer = Game.main.get_node(str(get_tree().get_rpc_sender_id())).body
-	peer.translation = t
-	peer.rotation.y = ry
-	peer.get_node("Head").rotation.x = hrx
-	peer.get_parent().velocity = v
 
 ##
 # Events
@@ -86,6 +99,7 @@ func _on_peer_connected(id):
 	
 func _on_peer_disconnected(id):
 	print(Log.get_prefix("Networking", "Info"), str(id), " has disconnected.")
+	Game.main.get_node(str(id)).free()
 
 func _on_connected_to_server():
 	print(Log.get_prefix("Networking", "Info"), "Now connected to a server.")
