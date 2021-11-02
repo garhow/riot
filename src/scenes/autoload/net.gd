@@ -4,7 +4,7 @@ const PORT : int = 3524
 const MAX_PLAYERS : int = 12
 const HOST_RATE : float = 1.0/20.0
 const PEER_RATE : float = 1.0/60.0
-const VERSION : int = 003
+const VERSION : int = 004
 
 var network : NetworkedMultiplayerENet = NetworkedMultiplayerENet.new()
 
@@ -71,27 +71,28 @@ func create_server(port : int):
 func server_disconnect():
 	if get_tree().get_network_unique_id() == 1:
 		Logger.out([Logger.get_prefix("Networking", "Info"), "Closing server."])
-		for player in get_tree().get_network_connected_peers():
-			network.disconnect_peer(player)
-			Game.remove_controller(player)
 	else:
 		Logger.out([Logger.get_prefix("Networking", "Info"), "Disconnecting from server."])
 		get_tree().disconnect("connected_to_server", self, "_on_connected_to_server")
 		get_tree().disconnect("connection_failed", self, "_on_connection_failed")
 		get_tree().disconnect("server_disconnected", self, "_on_server_disconnected")
-	Game.remove_map()
-	Game.remove_controller(get_tree().get_network_unique_id())
 	get_tree().disconnect("network_peer_connected", self, "_on_peer_connected")
 	get_tree().disconnect("network_peer_disconnected", self, "_on_peer_disconnected")
+	for player in get_tree().get_network_connected_peers():
+		Game.remove_controller(player)
+	Game.remove_map()
+	Game.remove_controller(get_tree().get_network_unique_id())
 	get_tree().network_peer = null
 	network.close_connection()
 	Game.menu.visible = true
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 remotesync func update_player(dbf, drl):
 	Game.main.get_node(str(get_tree().get_rpc_sender_id())).direction += dbf + drl
 
 puppet func update_world(world_state : Array):
 	for player in world_state[0]:
+		print(player)
 		if int(player[0]) == get_tree().get_network_unique_id():
 			continue
 		Game.main.get_node(player[0]).update(player[1], player[2], player[3], player[4])
@@ -120,6 +121,4 @@ func _on_connection_failed():
 
 func _on_server_disconnected():
 	Logger.out([Logger.get_prefix("Networking", "Info"), "You have lost connection to the server."])
-	get_tree().network_peer = null
-	network.close_connection()
-	Game.menu.visible = true
+	server_disconnect()
