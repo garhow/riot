@@ -30,7 +30,7 @@ config/name="Riot"
 config/description="A multiplayer team-based shooter"
 run/main_scene="res://scenes/main.tscn"
 config/icon="res://misc/icon.png"
-config/version="0.0.4"
+config/version="0.0.7"
 
 [autoload]
 
