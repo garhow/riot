@@ -37,7 +37,7 @@ config/version="0.0.4"
 Game="*res://scenes/autoload/game.gd"
 Net="*res://scenes/autoload/net.gd"
 Save="*res://scenes/autoload/save.gd"
-Log="*res://scenes/autoload/log.gd"
+Logger="*res://scenes/autoload/logger.gd"
 
 [debug]
 

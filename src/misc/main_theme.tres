@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=16 format=2]
+[gd_resource type="Theme" load_steps=17 format=2]
 
 [ext_resource path="res://fonts/xolonium/ttf/Xolonium-Regular.ttf" type="DynamicFontData" id=1]
 
@@ -90,9 +90,17 @@ corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
-shadow_size = 2
+shadow_size = 1
 
 [sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0.215686, 0, 0, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_size = 1
+
+[sub_resource type="StyleBoxFlat" id=10]
 content_margin_left = 12.0
 content_margin_right = 12.0
 content_margin_top = 12.0
@@ -104,7 +112,7 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 shadow_size = 1
 
-[sub_resource type="StyleBoxFlat" id=10]
+[sub_resource type="StyleBoxFlat" id=11]
 content_margin_left = 12.0
 content_margin_right = 12.0
 content_margin_top = 4.0
@@ -113,7 +121,7 @@ bg_color = Color( 0.215686, 0, 0, 1 )
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 
-[sub_resource type="StyleBoxFlat" id=11]
+[sub_resource type="StyleBoxFlat" id=12]
 content_margin_left = 12.0
 content_margin_right = 12.0
 content_margin_top = 4.0
@@ -122,7 +130,7 @@ bg_color = Color( 0.215686, 0.109804, 0.109804, 1 )
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 
-[sub_resource type="StyleBoxFlat" id=12]
+[sub_resource type="StyleBoxFlat" id=13]
 content_margin_left = 12.0
 content_margin_right = 12.0
 content_margin_top = 4.0
@@ -131,15 +139,15 @@ bg_color = Color( 0.333333, 0, 0, 1 )
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 
-[sub_resource type="StyleBoxEmpty" id=13]
+[sub_resource type="StyleBoxEmpty" id=14]
 
-[sub_resource type="DynamicFont" id=14]
+[sub_resource type="DynamicFont" id=15]
 size = 18
 use_filter = true
 font_data = ExtResource( 1 )
 
 [resource]
-default_font = SubResource( 14 )
+default_font = SubResource( 15 )
 Button/colors/font_color = Color( 1, 1, 1, 1 )
 Button/colors/font_color_disabled = Color( 0.901961, 0.901961, 0.901961, 0.533333 )
 Button/colors/font_color_hover = Color( 0.94, 0.94, 0.94, 1 )
@@ -169,6 +177,7 @@ LineEdit/styles/focus = SubResource( 7 )
 LineEdit/styles/normal = SubResource( 7 )
 LineEdit/styles/read_only = null
 Panel/styles/panel = SubResource( 8 )
+PanelContainer/styles/panel = SubResource( 9 )
 TabContainer/colors/font_color_bg = Color( 1, 1, 1, 0.686275 )
 TabContainer/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
 TabContainer/colors/font_color_fg = Color( 0.94, 0.94, 0.94, 1 )
@@ -184,10 +193,10 @@ TabContainer/icons/increment = null
 TabContainer/icons/increment_highlight = null
 TabContainer/icons/menu = null
 TabContainer/icons/menu_highlight = null
-TabContainer/styles/panel = SubResource( 9 )
-TabContainer/styles/tab_bg = SubResource( 10 )
-TabContainer/styles/tab_disabled = SubResource( 11 )
-TabContainer/styles/tab_fg = SubResource( 12 )
+TabContainer/styles/panel = SubResource( 10 )
+TabContainer/styles/tab_bg = SubResource( 11 )
+TabContainer/styles/tab_disabled = SubResource( 12 )
+TabContainer/styles/tab_fg = SubResource( 13 )
 Tabs/colors/font_color_bg = Color( 1, 1, 1, 1 )
 Tabs/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
 Tabs/colors/font_color_fg = Color( 0.94, 0.94, 0.94, 1 )
@@ -208,4 +217,4 @@ Tabs/styles/tab_bg = null
 Tabs/styles/tab_disabled = null
 Tabs/styles/tab_fg = null
 VSeparator/constants/separation = 4
-VSeparator/styles/separator = SubResource( 13 )
+VSeparator/styles/separator = SubResource( 14 )

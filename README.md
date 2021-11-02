@@ -12,7 +12,8 @@ These are the default key bindings for playing Riot.
 
 ### General
 
-- `Escape`: Open the main menu and free the cursor when in a game
+- `Escape`: Toggle the in-game menu
+- `Tilde (~)`: Toggle the console
 
 ### Movement
 
