@@ -31,6 +31,7 @@ config/description="A multiplayer team-based shooter"
 run/main_scene="res://scenes/main.tscn"
 config/icon="res://misc/icon.png"
 config/version="0.0.8-rc1"
+config/protocol_version=4
 
 [autoload]
 
@@ -41,6 +42,7 @@ Logger="*res://scenes/autoload/logger.gd"
 
 [debug]
 
+gdscript/warnings/return_value_discarded=false
 multirun/number_of_windows=2
 multirun/window_distance=1270
 multirun/add_custom_args=true

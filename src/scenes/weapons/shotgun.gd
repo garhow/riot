@@ -18,7 +18,7 @@ func secondary():
 func pump():
 	pass
 
-func _on_Animation_animation_started(anim_name):
+func _on_Animation_animation_started(_anim_name):
 	pass
 
 func _on_Animation_animation_finished(anim_name):

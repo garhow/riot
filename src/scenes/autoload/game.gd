@@ -3,6 +3,7 @@ extends Node
 var player : Player
 
 var version = ProjectSettings.get_setting("application/config/version")
+var protocol_version : int = ProjectSettings.get_setting("application/config/protocol_version")
 
 onready var main = get_tree().root.get_child(get_tree().root.get_child_count() - 1)
 onready var menu = main.get_node("Menu")

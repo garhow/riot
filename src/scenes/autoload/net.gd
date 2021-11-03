@@ -4,7 +4,6 @@ const PORT : int = 3524
 const MAX_PLAYERS : int = 12
 const HOST_RATE : float = 1.0/20.0
 const PEER_RATE : float = 1.0/60.0
-const VERSION : int = 004
 
 var network : NetworkedMultiplayerENet = NetworkedMultiplayerENet.new()
 
@@ -33,6 +32,7 @@ func is_connected_to_server():
 ####
 
 func create_client(address : String, port : int):
+# warning-ignore:return_value_discarded
 	get_tree().connect("network_peer_connected", self, "_on_peer_connected")
 	get_tree().connect("network_peer_disconnected", self, "_on_peer_disconnected")
 	get_tree().connect("connected_to_server", self, "_on_connected_to_server")
