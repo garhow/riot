@@ -18,7 +18,7 @@ func _on_Host_pressed():
 			print("Already connected to a server, not proceeding.")
 			return
 	Game.spawn_map(0)
-	Game.spawn_controller("1", 0)
+	Game.spawn_controller(1, 0)
 	Game.toggle_menu()
 	Net.create_server(Net.PORT)
 

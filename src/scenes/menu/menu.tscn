@@ -154,8 +154,7 @@ margin_right = 924.0
 margin_bottom = 500.0
 size_flags_vertical = 1
 custom_fonts/font = SubResource( 3 )
-text = "v0.04
-"
+text = "Version"
 align = 2
 valign = 2
 __meta__ = {

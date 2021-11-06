@@ -1,52 +1,37 @@
-extends Node
+extends KinematicBody
 class_name Player
 
 ##
 # Player configuration
 ##
 
-export var acceleration = 6
-export var climb_speed = 6.8
-export var crouch_acceleration = 6.2
-export var crouch_height = 0.6
-export var crouch_speed = 1.5
-export var default_height = 1.7
-export var gravity = 16.2
-export var jump_speed = 6.4
-export var max_health = 100
-export var sprint_speed = 5
-export var sneak_speed = 2
+# Input variables
+const MOUSE_SENSITIVITY : float = 75.0
+var camera_rotation : Vector2 = Vector2.ZERO
+var movement_input : Vector2 = Vector2.ZERO
 
-export var mouse_acceleration = 18
-export var mouse_sensitivity = 0.1
-
-var climb : bool
-var dead : bool = false
+# Movement variables
+const ACCELERATION : float = 12.0
+const GRAVITY : float = 20.0
+const JUMP_FORCE : float = 6.4
+const sprint_speed : float = 5.0
+const sneak_speed : float = 2.0
 var direction : Vector3
-var fall : Vector3
-var horizontal_velocity : Vector3
+var jumping : bool
 var movement : Vector3
 var speed : float
 var velocity : Vector3
 
-var health : float = max_health
-
+# Combat variables
 var selected_weapon : int = 1
 
-##
-# Nodes
-##
+# Local variables
+const SWAY : float = 35.0
 
-onready var body = $Body
-onready var camera = $Body/Head/Camroot/Camera # Camera
-onready var camroot = $Body/Head/Camroot # Camera Root
-onready var head = $Body/Head # Player head
-onready var weaponroot = $Body/Head/Weaponroot # Weapon Root
-
-# Raycasts
-onready var headcast = $Body/Headcast
-onready var footcast = $Body/Footcast
-onready var ribcast = $Body/Ribcast
+# Node variables
+onready var head = get_node("Head")
+onready var weaponlocation = get_node("Head/WeaponLocation")
+onready var weaponroot = get_node("Head/Weaponroot")
 
 ##
 # Functions
@@ -54,12 +39,11 @@ onready var ribcast = $Body/Ribcast
 
 func _ready():
 	Game.player = self
+	$Head/Weaponroot.set_as_toplevel(true)
 
 func _input(event):
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		$Body.rotate_y(deg2rad(-event.relative.x * mouse_sensitivity))
-		head.rotate_x(deg2rad(-event.relative.y * mouse_sensitivity))
-		head.rotation.x = clamp(head.rotation.x, deg2rad(-89), deg2rad(89))
+		camera_rotation = Vector2(-event.relative.y * MOUSE_SENSITIVITY * 0.001, -event.relative.x * MOUSE_SENSITIVITY * 0.001)
 	
 	if event is InputEventMouseButton and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED and event.is_pressed():
 		if event.button_index == BUTTON_WHEEL_UP or event.button_index == BUTTON_WHEEL_DOWN:
@@ -72,62 +56,83 @@ func _input(event):
 				if selected_weapon > 1:
 					selected_weapon -= 1
 				else:
-					selected_weapon = weaponroot.get_child_count()
-		for weapon in weaponroot.get_children():
+					selected_weapon = $Head/Weaponroot.get_child_count()
+		for weapon in $Head/Weaponroot.get_children():
 			weapon.visible = false
-			weaponroot.get_node(str(selected_weapon)).visible = true
+			$Head/Weaponroot.get_node(str(selected_weapon)).visible = true
 
-func _physics_process(delta):
-	if not $Body.is_on_floor():
-		fall.y -= delta * gravity
-	if Input.is_action_pressed("jump") and $Body.is_on_wall() and not headcast.is_colliding():
-		if footcast.is_colliding() and ribcast.is_colliding():
-			fall.y = climb_speed
-	process_motion(delta)
+func _process(_delta):
 	process_weapons()
-	direction = Vector3()
-	$Body.move_and_slide(fall, Vector3.UP)
-
-func process_motion(delta):
-	var direction_bf = (Input.get_action_strength("move_backward") - Input.get_action_strength("move_forward")) * $Body.global_transform.basis.z
-	var direction_rl = (Input.get_action_strength("move_right") - Input.get_action_strength("move_left")) * $Body.global_transform.basis.x
-	
-	direction += direction_bf + direction_rl
-	#Net.update_player_local(direction_bf, direction_rl)
-	
-	if Input.is_action_just_pressed("jump") and $Body.is_on_floor():
-			fall.y = jump_speed
-	
-	speed = sprint_speed
-	if Input.is_action_pressed("sneak") and $Body.is_on_floor():
-		speed = sneak_speed
-	if Input.is_action_pressed("crouch"):
-		$Body/Collision.shape.height -= crouch_acceleration * delta
-		if $Body.is_on_floor():
-			speed = crouch_speed
-	else:
-		$Body/Collision.shape.height += crouch_acceleration * delta
-	
-	$Body/Collision.shape.height = clamp($Body/Collision.shape.height, crouch_height, default_height)
-
-	direction = direction.normalized()
-	horizontal_velocity = horizontal_velocity.linear_interpolate(direction * speed, acceleration * delta)
-	movement.x = horizontal_velocity.x
-	movement.z = horizontal_velocity.z
-	$Body.move_and_slide(movement, Vector3.UP)
 
 func process_weapons():
-	if weaponroot.get_child_count() > 0:
+	if $Head/Weaponroot.get_child_count() > 0:
 		if Input.is_action_just_pressed("fire"):
-			weaponroot.get_node(str(selected_weapon)).primary()
+			$Head/Weaponroot.get_node(str(selected_weapon)).primary()
 	else:
 		var knife = load("res://scenes/weapons/knife.tscn").instance()
 		var shotgun = load("res://scenes/weapons/shotgun.tscn").instance()
 		knife.name = "1"
 		shotgun.name = "2"
-		weaponroot.add_child(knife)
-		weaponroot.add_child(shotgun)
-		for weapon in weaponroot.get_children():
+		$Head/Weaponroot.add_child(knife)
+		$Head/Weaponroot.add_child(shotgun)
+		for weapon in $Head/Weaponroot.get_children():
 			weapon.visible = false
-		weaponroot.get_node(str(selected_weapon)).visible = true
-		
+		$Head/Weaponroot.get_node(str(selected_weapon)).visible = true
+
+func _physics_process(delta):
+	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+		process_input(delta)
+	process_movement(delta)
+	process_rotation(delta)
+
+func process_input(delta : float):
+	movement_input.x = int(Input.is_action_pressed("move_backward")) - int(Input.is_action_pressed("move_forward"))
+	movement_input.y = int(Input.is_action_pressed("move_right")) - int(Input.is_action_pressed("move_left"))
+	
+	speed = sprint_speed
+	
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		jumping = true
+	if Input.is_action_pressed("jump") and not is_on_floor() and is_on_wall() and $Ribcast.is_colliding() and not $Headcast.is_colliding():
+		velocity.y = JUMP_FORCE
+	if Input.is_action_pressed("sneak") and is_on_floor():
+		speed = sneak_speed
+	if Input.is_action_pressed("crouch"):
+		$Collision.shape.height -= ACCELERATION * delta
+		if is_on_floor():
+			speed = sneak_speed
+	else:
+		$Collision.shape.height += ACCELERATION * delta
+	$Collision.shape.height = clamp($Collision.shape.height, 0.75, 1.5)
+
+func process_movement(delta : float):
+	direction = movement_input.x * global_transform.basis.z + movement_input.y * global_transform.basis.x
+	direction = direction.normalized()
+	movement = movement.linear_interpolate(direction * speed, ACCELERATION * delta)
+	
+	if is_on_floor():
+		ground_move(delta)
+	elif not is_on_floor():
+		air_move(delta)
+	
+	velocity.x = movement.x
+	velocity.y += Vector3.DOWN.y * GRAVITY * delta
+	velocity.z = movement.z
+	velocity = move_and_slide(velocity, Vector3.UP, true)
+
+func process_rotation(delta : float):
+	$Head.rotate_x(deg2rad(camera_rotation.x))
+	$Head.rotation.x = clamp($Head.rotation.x, deg2rad(-89), deg2rad(89))
+	rotate_y(deg2rad(camera_rotation.y))
+	weaponroot.global_transform.origin = weaponlocation.global_transform.origin
+	weaponroot.rotation.x = lerp_angle(weaponroot.rotation.x, head.rotation.x, SWAY * delta)
+	weaponroot.rotation.y = lerp_angle(weaponroot.rotation.y, rotation.y, SWAY * delta)
+	camera_rotation = Vector2.ZERO
+
+func air_move(_delta : float):
+	pass # Placeholder for air strafing and other things
+
+func ground_move(_delta : float):
+	if jumping:
+		jumping = false
+		velocity.y = Vector3.UP.y * JUMP_FORCE

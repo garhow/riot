@@ -10,7 +10,6 @@ func _process(_delta):
 
 func primary():
 	$Animation.play("Fire")
-	
 
 func secondary():
 	pass

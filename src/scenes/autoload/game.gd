@@ -32,11 +32,13 @@ func spawn_map(map_id : int):
 	var map = maps[map_id].instance()
 	main.add_child(map)
 
-func spawn_controller(name : String, type: int):
+func spawn_controller(id : int, type: int):
 	var controller = controllers[type].instance()
-	controller.name = name
+	controller.name = str(id)
+	if type == 1:
+		controller.get_node("Head/Nametag/Viewport/Panel/Label").text = str(id)
 	main.add_child(controller)
-	controller.get_node("Body").global_transform = get_spawn()
+	controller.global_transform = get_spawn()
 
 func remove_map():
 	main.remove_child(main.get_node("Map"))

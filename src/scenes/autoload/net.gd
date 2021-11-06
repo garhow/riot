@@ -16,10 +16,10 @@ func _physics_process(_delta):
 		if get_tree().is_network_server():
 			var world_state = [[]]
 			for body in get_tree().get_nodes_in_group("players"):
-				world_state[0].push_back([body.owner.name, body.translation, body.rotation.y, body.get_node("Head").rotation.x, body.get_parent().velocity, body.is_on_floor()])
+				world_state[0].push_back([body.name, body.translation, body.rotation.y, body.get_node("Head").rotation.x, body.velocity, body.is_on_floor()])
 			rpc_unreliable("update_world", world_state)
 		else:
-			rpc_unreliable_id(1, "update_peer", Game.player.body.translation, Game.player.body.rotation.y, Game.player.head.rotation.x, Game.player.velocity)
+			rpc_unreliable_id(1, "update_peer", Game.player.translation, Game.player.rotation.y, Game.player.get_node("Head").rotation.x, Game.player.velocity)
 
 func is_connected_to_server():
 	if get_tree().network_peer == null:
@@ -32,7 +32,6 @@ func is_connected_to_server():
 ####
 
 func create_client(address : String, port : int):
-# warning-ignore:return_value_discarded
 	get_tree().connect("network_peer_connected", self, "_on_peer_connected")
 	get_tree().connect("network_peer_disconnected", self, "_on_peer_disconnected")
 	get_tree().connect("connected_to_server", self, "_on_connected_to_server")
@@ -42,20 +41,12 @@ func create_client(address : String, port : int):
 	get_tree().set_network_peer(network)
 	Logger.out([Logger.get_prefix("Networking", "Info"), "Now connecting to ", address, ":", str(port), "!"])
 
-# Request movement information from server
-func update_player_local(dbf, drl):
-	rpc_id(1, "update_player", dbf, drl)
-
 remote func update_peer(t : Vector3, ry : float, hrx : float , v : Vector3):
-	var peer = Game.main.get_node(str(get_tree().get_rpc_sender_id())).body
+	var peer = Game.main.get_node(str(get_tree().get_rpc_sender_id()))
 	peer.translation = t
 	peer.rotation.y = ry
 	peer.get_node("Head").rotation.x = hrx
-	peer.get_parent().velocity = v
-
-remote func kicked(reason : String):
-	Logger.out([Logger.get_prefix("Networking", "Info"), "You have been kicked from the server. Reason: ", reason])
-	server_disconnect()
+	peer.velocity = v
 
 ####
 ## Server networking functions
@@ -92,7 +83,6 @@ remotesync func update_player(dbf, drl):
 
 puppet func update_world(world_state : Array):
 	for player in world_state[0]:
-		print(player)
 		if int(player[0]) == get_tree().get_network_unique_id():
 			continue
 		Game.main.get_node(player[0]).update(player[1], player[2], player[3], player[4])
@@ -103,7 +93,7 @@ puppet func update_world(world_state : Array):
 
 func _on_peer_connected(id):
 	Logger.out([Logger.get_prefix("Networking", "Info"), str(id), " has connected to the server!"])
-	Game.spawn_controller(str(id), 1)
+	Game.spawn_controller(id, 1)
 	
 func _on_peer_disconnected(id):
 	Logger.out([Logger.get_prefix("Networking", "Info"), str(id), " has disconnected."])
@@ -111,9 +101,8 @@ func _on_peer_disconnected(id):
 
 func _on_connected_to_server():
 	Logger.out([Logger.get_prefix("Networking", "Info"), "Now connected to a server."])
-	var id = get_tree().get_network_unique_id()
 	Game.spawn_map(0)
-	Game.spawn_controller(str(id), 0)
+	Game.spawn_controller(get_tree().get_network_unique_id(), 0)
 	Game.toggle_menu()
 	
 func _on_connection_failed():

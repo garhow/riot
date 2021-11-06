@@ -9,12 +9,12 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Node",
+"base": "KinematicBody",
 "class": "Peer",
 "language": "GDScript",
 "path": "res://scenes/controllers/peer.gd"
 }, {
-"base": "Node",
+"base": "KinematicBody",
 "class": "Player",
 "language": "GDScript",
 "path": "res://scenes/controllers/player.gd"
@@ -30,8 +30,8 @@ config/name="Riot"
 config/description="A multiplayer team-based shooter"
 run/main_scene="res://scenes/main.tscn"
 config/icon="res://misc/icon.png"
-config/version="0.0.8-rc1"
-config/protocol_version=4
+config/version="0.0.8"
+config/protocol_version=5
 
 [autoload]
 
