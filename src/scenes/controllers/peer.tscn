@@ -12,15 +12,15 @@ margin = 0.001
 radius = 0.5
 height = 1.5
 
-[sub_resource type="StyleBoxFlat" id=4]
+[sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0.215686, 0.0784314, 0.0784314, 0.941176 )
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[sub_resource type="ViewportTexture" id=3]
-viewport_path = NodePath("Head/Nametag/Viewport")
+[sub_resource type="ViewportTexture" id=4]
+viewport_path = NodePath("Nametag/Viewport")
 
 [node name="Peer" type="KinematicBody" groups=[
 "players",
@@ -39,38 +39,6 @@ shape = SubResource( 2 )
 [node name="Head" type="Position3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
 
-[node name="Nametag" type="Spatial" parent="Head"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0 )
-
-[node name="Viewport" type="Viewport" parent="Head/Nametag"]
-size = Vector2( 200, 25 )
-own_world = true
-transparent_bg = true
-render_target_v_flip = true
-
-[node name="Panel" type="Panel" parent="Head/Nametag/Viewport"]
-margin_right = 200.0
-margin_bottom = 25.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_styles/panel = SubResource( 4 )
-
-[node name="Label" type="Label" parent="Head/Nametag/Viewport/Panel"]
-margin_right = 200.0
-margin_bottom = 25.0
-size_flags_horizontal = 3
-size_flags_vertical = 7
-theme = ExtResource( 2 )
-text = "Player"
-align = 1
-valign = 1
-clip_text = true
-
-[node name="Sprite3D" type="Sprite3D" parent="Head/Nametag"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6728, 0 )
-billboard = 1
-texture = SubResource( 3 )
-
 [node name="Weaponroot" type="Position3D" parent="Head"]
 transform = Transform( 0.099313, 0, 0.0117017, 0, 0.1, 0, -0.0117017, 0, 0.099313, 0.115, -0.12, -0.425 )
 
@@ -88,3 +56,34 @@ cast_to = Vector3( 0, 0, -1.5 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, -0.3 )
 enabled = true
 cast_to = Vector3( 0, 0, -1.5 )
+
+[node name="Nametag" type="Spatial" parent="."]
+
+[node name="Viewport" type="Viewport" parent="Nametag"]
+size = Vector2( 200, 25 )
+own_world = true
+transparent_bg = true
+render_target_v_flip = true
+
+[node name="Panel" type="Panel" parent="Nametag/Viewport"]
+margin_right = 200.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = SubResource( 3 )
+
+[node name="Label" type="Label" parent="Nametag/Viewport/Panel"]
+margin_right = 200.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+theme = ExtResource( 2 )
+text = "Player"
+align = 1
+valign = 1
+clip_text = true
+
+[node name="Sprite3D" type="Sprite3D" parent="Nametag"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6728, 0 )
+billboard = 1
+texture = SubResource( 4 )

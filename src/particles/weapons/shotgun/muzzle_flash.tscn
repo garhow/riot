@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=2]
+
+[sub_resource type="ParticlesMaterial" id=1]
+direction = Vector3( 0, 0, -20 )
+spread = 20.0
+flatness = 0.8
+gravity = Vector3( 0, -2, 0 )
+initial_velocity = 11.63
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 1, 0.94902, 0.627451, 1 )
+metallic = 0.5
+roughness = 0.0
+clearcoat_enabled = true
+clearcoat = 1.0
+clearcoat_gloss = 1.0
+
+[sub_resource type="CapsuleMesh" id=3]
+material = SubResource( 2 )
+radius = 0.025
+mid_height = 0.1
+
+[node name="Muzzle Flash" type="Particles"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2, 0.656679, 0 )
+emitting = false
+amount = 30
+lifetime = 1.8
+one_shot = true
+speed_scale = 3.0
+explosiveness = 1.0
+fract_delta = false
+process_material = SubResource( 1 )
+draw_pass_1 = SubResource( 3 )

@@ -9,14 +9,15 @@ onready var main = get_tree().root.get_child(get_tree().root.get_child_count() -
 onready var menu = main.get_node("Menu")
 onready var console = menu.get_node("Console")
 
-onready var controllers = [
+var controllers = [
 	preload("res://scenes/controllers/player.tscn"),
 	preload("res://scenes/controllers/peer.tscn")
 ]
 
-onready var maps = [
-	preload("res://scenes/maps/test_level.tscn")
-]
+var maps : Dictionary = {
+	"test_classic": preload("res://scenes/maps/test/classic.tscn"),
+	"test_practice": preload("res://scenes/maps/test/practice.tscn")
+}
 
 func _ready():
 	Logger.out([Logger.get_prefix("game", "info"), "Welcome to Riot ", "v"+version, "!"])
@@ -28,15 +29,12 @@ func _process(_delta):
 	if Input.is_action_just_pressed("toggle_console"):
 		toggle_console()
 
-func spawn_map(map_id : int):
-	var map = maps[map_id].instance()
-	main.add_child(map)
+func spawn_map(map : String):
+	main.add_child(maps[map].instance())
 
 func spawn_controller(id : int, type: int):
 	var controller = controllers[type].instance()
 	controller.name = str(id)
-	if type == 1:
-		controller.get_node("Head/Nametag/Viewport/Panel/Label").text = str(id)
 	main.add_child(controller)
 	controller.global_transform = get_spawn()
 

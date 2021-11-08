@@ -1,0 +1,109 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://materials/generic/wall.tres" type="Material" id=1]
+[ext_resource path="res://materials/generic/base.tres" type="Material" id=2]
+[ext_resource path="res://scenes/controllers/dummy.tscn" type="PackedScene" id=3]
+
+[sub_resource type="CubeMesh" id=1]
+
+[sub_resource type="BoxShape" id=2]
+
+[sub_resource type="CubeMesh" id=3]
+
+[sub_resource type="BoxShape" id=4]
+
+[node name="Map" type="Spatial"]
+
+[node name="Floor" type="StaticBody" parent="."]
+transform = Transform( 20, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0 )
+
+[node name="Mesh" type="MeshInstance" parent="Floor"]
+mesh = SubResource( 1 )
+material/0 = ExtResource( 2 )
+
+[node name="Collision" type="CollisionShape" parent="Floor"]
+shape = SubResource( 2 )
+
+[node name="Counter" type="StaticBody" parent="."]
+transform = Transform( 20, 0, 0, 0, 0.5, 0, 0, 0, 0.2, 0, 1.5, 3 )
+
+[node name="Mesh" type="MeshInstance" parent="Counter"]
+mesh = SubResource( 1 )
+material/0 = ExtResource( 2 )
+
+[node name="Collision" type="CollisionShape" parent="Counter"]
+shape = SubResource( 2 )
+
+[node name="Wall" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0 )
+
+[node name="Side" type="StaticBody" parent="Wall"]
+transform = Transform( 19, 0, 0, 0, 2, 0, 0, 0, 1, 1, 0, -19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Wall/Side"]
+mesh = SubResource( 3 )
+material/0 = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Wall/Side"]
+shape = SubResource( 4 )
+
+[node name="Side2" type="StaticBody" parent="Wall"]
+transform = Transform( -8.30516e-07, 0, -1, 0, 2, 0, 19, 0, -4.37114e-08, 19, 0, 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Wall/Side2"]
+mesh = SubResource( 3 )
+material/0 = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Wall/Side2"]
+shape = SubResource( 4 )
+
+[node name="Side3" type="StaticBody" parent="Wall"]
+transform = Transform( -19, 0, 1.50996e-07, 0, 2, 0, -2.86892e-06, 0, -1, -1, 0, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Wall/Side3"]
+mesh = SubResource( 3 )
+material/0 = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Wall/Side3"]
+shape = SubResource( 4 )
+
+[node name="Side4" type="StaticBody" parent="Wall"]
+transform = Transform( -8.30516e-07, 0, 1, 0, 2, 0, -19, 0, -4.37114e-08, -19, 0, -0.999998 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Wall/Side4"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 5.68434e-14, 0, 1, 0, 0, 0 )
+mesh = SubResource( 3 )
+material/0 = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Wall/Side4"]
+shape = SubResource( 4 )
+
+[node name="Spawns" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -8 )
+
+[node name="Spawn" type="Position3D" parent="Spawns"]
+
+[node name="Spawn2" type="Position3D" parent="Spawns"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0 )
+
+[node name="Spawn3" type="Position3D" parent="Spawns"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0 )
+
+[node name="Dummies" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, 9 )
+
+[node name="Dummy" parent="Dummies" instance=ExtResource( 3 )]
+
+[node name="Dummy2" parent="Dummies" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0 )
+
+[node name="Dummy3" parent="Dummies" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0 )
+
+[node name="Sun" type="DirectionalLight" parent="."]
+transform = Transform( 0.464833, -0.8384, -0.284633, -0.309976, -0.455228, 0.834675, -0.829365, -0.299756, -0.471488, -5.98475, 19.2049, -26.5339 )
+light_color = Color( 0.839216, 0.803922, 0.713726, 1 )
+light_bake_mode = 2
+shadow_enabled = true
+directional_shadow_blend_splits = true
+directional_shadow_max_distance = 512.0

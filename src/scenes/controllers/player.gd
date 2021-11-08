@@ -23,6 +23,8 @@ var speed : float
 var velocity : Vector3
 
 # Combat variables
+const MAX_HEALTH : int = 100
+var health : int = MAX_HEALTH
 var selected_weapon : int = 1
 
 # Local variables
@@ -39,7 +41,7 @@ onready var weaponroot = get_node("Head/Weaponroot")
 
 func _ready():
 	Game.player = self
-	$Head/Weaponroot.set_as_toplevel(true)
+	weaponroot.set_as_toplevel(true)
 
 func _input(event):
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
@@ -56,34 +58,32 @@ func _input(event):
 				if selected_weapon > 1:
 					selected_weapon -= 1
 				else:
-					selected_weapon = $Head/Weaponroot.get_child_count()
-		for weapon in $Head/Weaponroot.get_children():
+					selected_weapon = weaponroot.get_child_count()
+		for weapon in weaponroot.get_children():
 			weapon.visible = false
-			$Head/Weaponroot.get_node(str(selected_weapon)).visible = true
-
-func _process(_delta):
-	process_weapons()
-
-func process_weapons():
-	if $Head/Weaponroot.get_child_count() > 0:
-		if Input.is_action_just_pressed("fire"):
-			$Head/Weaponroot.get_node(str(selected_weapon)).primary()
-	else:
-		var knife = load("res://scenes/weapons/knife.tscn").instance()
-		var shotgun = load("res://scenes/weapons/shotgun.tscn").instance()
-		knife.name = "1"
-		shotgun.name = "2"
-		$Head/Weaponroot.add_child(knife)
-		$Head/Weaponroot.add_child(shotgun)
-		for weapon in $Head/Weaponroot.get_children():
-			weapon.visible = false
-		$Head/Weaponroot.get_node(str(selected_weapon)).visible = true
+			weaponroot.get_node(str(selected_weapon)).visible = true
 
 func _physics_process(delta):
 	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		process_input(delta)
 	process_movement(delta)
 	process_rotation(delta)
+	process_combat()
+
+func process_combat():
+	if weaponroot.get_child_count() > 0:
+		if Input.is_action_just_pressed("fire"):
+			weaponroot.get_node(str(selected_weapon)).primary()
+	else:
+		var knife = load("res://scenes/weapons/knife.tscn").instance()
+		var shotgun = load("res://scenes/weapons/shotgun.tscn").instance()
+		knife.name = "1"
+		shotgun.name = "2"
+		weaponroot.add_child(knife)
+		weaponroot.add_child(shotgun)
+		for weapon in weaponroot.get_children():
+			weapon.visible = false
+		weaponroot.get_node(str(selected_weapon)).visible = true
 
 func process_input(delta : float):
 	movement_input.x = int(Input.is_action_pressed("move_backward")) - int(Input.is_action_pressed("move_forward"))
@@ -93,6 +93,7 @@ func process_input(delta : float):
 	
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		jumping = true
+		health -= 10
 	if Input.is_action_pressed("jump") and not is_on_floor() and is_on_wall() and $Ribcast.is_colliding() and not $Headcast.is_colliding():
 		velocity.y = JUMP_FORCE
 	if Input.is_action_pressed("sneak") and is_on_floor():

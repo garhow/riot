@@ -95,11 +95,23 @@ playback_default_blend_time = 0.2
 "anims/Run Bobbing" = SubResource( 4 )
 "anims/Walk Bobbing" = SubResource( 5 )
 
+[node name="Weaponroot" type="Position3D" parent="Head"]
+transform = Transform( 0.099313, 0, 0.0117017, 0, 0.1, 0, -0.0117017, 0, 0.099313, 0.115, -0.12, -0.425 )
+
 [node name="WeaponLocation" type="Position3D" parent="Head"]
 transform = Transform( 0.099313, 0, 0.0117017, 0, 0.1, 0, -0.0117017, 0, 0.099313, 0.115, -0.12, -0.425 )
 
-[node name="Weaponroot" type="Position3D" parent="Head"]
-transform = Transform( 0.099313, 0, 0.0117017, 0, 0.1, 0, -0.0117017, 0, 0.099313, 0.115, -0.12, -0.425 )
+[node name="Guncast" type="RayCast" parent="Head"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5 )
+enabled = true
+cast_to = Vector3( 0, 0, -100 )
+
+[node name="Meleecast" type="RayCast" parent="Head"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5 )
+enabled = true
+cast_to = Vector3( 0, 0, -0.6 )
+
+[node name="WeaponCasts" type="Spatial" parent="Head"]
 
 [node name="Footcast" type="RayCast" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -0.3 )

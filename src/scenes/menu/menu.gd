@@ -12,15 +12,11 @@ func _process(_delta):
 ##
 
 func _on_Host_pressed():
-	var server_incept_patch = true # harvey298 - incase anyone wants to have some fun :)
-	
-	if server_incept_patch == true and get_tree().network_peer != null and get_tree().is_network_server(): # harvey298 - prevent server inception - could create a bug later
-			print("Already connected to a server, not proceeding.")
-			return
-	Game.spawn_map(0)
+	var map = Game.maps.keys()[randi() % Game.maps.keys().size()]
+	Game.spawn_map(map)
 	Game.spawn_controller(1, 0)
 	Game.toggle_menu()
-	Net.create_server(Net.PORT)
+	Net.create_server(Net.PORT, Net.MAX_PLAYERS, map)
 
 ##
 # Join
