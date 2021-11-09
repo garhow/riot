@@ -1,7 +1,7 @@
 ---
 
-name: "Weapon Template"
-about: "This template is for weapon suggestions!"
+name: "Weapon"
+about: "Suggest a new weapon to be added to the game."
 title: "[WEAPON] "
 labels:
 
