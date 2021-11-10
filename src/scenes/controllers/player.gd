@@ -73,10 +73,11 @@ func _physics_process(delta):
 
 func process_combat():
 	if weaponroot.get_child_count() > 0:
-		if Input.is_action_just_pressed("fire"):
-			weaponroot.get_node(str(selected_weapon)).primary()
-		if Input.is_action_just_pressed("alt_fire"):
-			weaponroot.get_node(str(selected_weapon)).secondary()
+		if Game.menu.visible == false:
+			if Input.is_action_just_pressed("fire"):
+				weaponroot.get_node(str(selected_weapon)).primary()
+			elif Input.is_action_just_pressed("alt_fire"):
+				weaponroot.get_node(str(selected_weapon)).secondary()
 	else:
 		var knife = load("res://scenes/weapons/knife.tscn").instance()
 		var shotgun = load("res://scenes/weapons/shotgun.tscn").instance()
