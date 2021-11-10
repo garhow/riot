@@ -6,7 +6,7 @@ class_name Player
 ##
 
 # Input variables
-const MOUSE_SENSITIVITY : float = 75.0
+var mouse_sensitivity = Save.user_data.get("mouse").get("sensitivity")
 var camera_rotation : Vector2 = Vector2.ZERO
 var movement_input : Vector2 = Vector2.ZERO
 
@@ -45,7 +45,7 @@ func _ready():
 
 func _input(event):
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		camera_rotation = Vector2(-event.relative.y * MOUSE_SENSITIVITY * 0.001, -event.relative.x * MOUSE_SENSITIVITY * 0.001)
+		camera_rotation = Vector2(-event.relative.y * mouse_sensitivity * 0.001, -event.relative.x * mouse_sensitivity * 0.001)
 	
 	if event is InputEventMouseButton and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED and event.is_pressed():
 		if event.button_index == BUTTON_WHEEL_UP or event.button_index == BUTTON_WHEEL_DOWN:

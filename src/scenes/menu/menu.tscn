@@ -570,7 +570,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Video" type="VBoxContainer" parent="Center/Settings/Tabs"]
+[node name="Mouse" type="VBoxContainer" parent="Center/Settings/Tabs"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 12.0
@@ -580,21 +580,32 @@ margin_bottom = -12.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Fullscreen" type="CheckBox" parent="Center/Settings/Tabs/Video"]
+[node name="Sensitivity" type="VBoxContainer" parent="Center/Settings/Tabs/Mouse"]
 margin_right = 400.0
-margin_bottom = 34.0
-text = "Fullscreen"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+margin_bottom = 42.0
 
-[node name="Separator" type="HSeparator" parent="Center/Settings/Tabs/Video"]
-margin_top = 38.0
+[node name="Label" type="Label" parent="Center/Settings/Tabs/Mouse/Sensitivity"]
+margin_right = 400.0
+margin_bottom = 22.0
+text = "Sensitivity"
+
+[node name="Slider" type="HSlider" parent="Center/Settings/Tabs/Mouse/Sensitivity"]
+margin_top = 26.0
+margin_right = 400.0
+margin_bottom = 42.0
+size_flags_horizontal = 3
+theme = ExtResource( 1 )
+scrollable = false
+tick_count = 11
+ticks_on_borders = true
+
+[node name="Separator" type="HSeparator" parent="Center/Settings/Tabs/Mouse"]
+margin_top = 46.0
 margin_right = 400.0
 margin_bottom = 158.0
 size_flags_vertical = 3
 
-[node name="SaveChanges" type="Button" parent="Center/Settings/Tabs/Video"]
+[node name="SaveChanges" type="Button" parent="Center/Settings/Tabs/Mouse"]
 margin_top = 162.0
 margin_right = 400.0
 margin_bottom = 196.0
@@ -626,12 +637,43 @@ margin_right = 400.0
 margin_bottom = 54.0
 
 [node name="Separator" type="HSeparator" parent="Center/Settings/Tabs/User"]
-margin_top = 38.0
+margin_top = 58.0
 margin_right = 400.0
 margin_bottom = 158.0
 size_flags_vertical = 3
 
 [node name="SaveChanges" type="Button" parent="Center/Settings/Tabs/User"]
+margin_top = 162.0
+margin_right = 400.0
+margin_bottom = 196.0
+text = "Save changes"
+
+[node name="Video" type="VBoxContainer" parent="Center/Settings/Tabs"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 12.0
+margin_top = 42.0
+margin_right = -12.0
+margin_bottom = -12.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Fullscreen" type="CheckBox" parent="Center/Settings/Tabs/Video"]
+margin_right = 400.0
+margin_bottom = 34.0
+text = "Fullscreen"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Separator" type="HSeparator" parent="Center/Settings/Tabs/Video"]
+margin_top = 38.0
+margin_right = 400.0
+margin_bottom = 158.0
+size_flags_vertical = 3
+
+[node name="SaveChanges" type="Button" parent="Center/Settings/Tabs/Video"]
 margin_top = 162.0
 margin_right = 400.0
 margin_bottom = 196.0
@@ -673,5 +715,6 @@ selection_enabled = true
 [connection signal="pressed" from="Container/VBox/VBox/Quit" to="." method="_on_Quit_pressed"]
 [connection signal="pressed" from="Center/Credits/Panel/VBox/Close" to="." method="_on_Credits_Close_pressed"]
 [connection signal="pressed" from="Center/Join/Panel/VBox/Connect" to="." method="_on_Connect_pressed"]
-[connection signal="pressed" from="Center/Settings/Tabs/Video/SaveChanges" to="." method="_on_SaveChanges_pressed"]
+[connection signal="pressed" from="Center/Settings/Tabs/Mouse/SaveChanges" to="." method="_on_SaveChanges_pressed"]
 [connection signal="pressed" from="Center/Settings/Tabs/User/SaveChanges" to="." method="_on_SaveChanges_pressed"]
+[connection signal="pressed" from="Center/Settings/Tabs/Video/SaveChanges" to="." method="_on_SaveChanges_pressed"]

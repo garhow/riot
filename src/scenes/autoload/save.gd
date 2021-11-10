@@ -3,7 +3,9 @@ extends Node
 const USERDATA = "user://user_data.json"
 
 const USERDEFAULTS = {
-	"user": {
+	"mouse": {
+		"sensitivity": 75.0
+	}, "user": {
 		"username": "Unnamed"	
 	}, "video": {
 		"fullscreen": false

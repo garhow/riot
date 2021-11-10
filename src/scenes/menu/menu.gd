@@ -1,5 +1,7 @@
 extends Control
-	
+
+onready var settings = get_node("Center/Settings/Tabs")
+
 func _ready():
 	$Container/Version.text = "v"+Game.version
 	load_settings()
@@ -57,19 +59,23 @@ func _on_Settings_pressed():
 
 func _on_SaveChanges_pressed():
 	Save.user_data = {
-		"user": {
-			"username": $Center/Settings/Tabs/User/Username/Input.text
+		"mouse": {
+			"sensitivity": settings.get_node("Mouse/Sensitivity/Slider").value
+		}, "user": {
+			"username": settings.get_node("User/Username/Input").text
 		}, "video": {
-			"fullscreen": $Center/Settings/Tabs/Video/Fullscreen.pressed
+			"fullscreen": settings.get_node("Video/Fullscreen").pressed
 		}
 	}
 	Save.save_data()
 	
 func load_settings():
+	# Mouse
+	settings.get_node("Mouse/Sensitivity/Slider").value = Save.user_data.get("mouse").get("sensitivity")
 	# User
-	$Center/Settings/Tabs/User/Username/Input.text = Save.user_data.get("user").get("username") # Username
+	settings.get_node("User/Username/Input").text = Save.user_data.get("user").get("username") # Username
 	# Video
-	$Center/Settings/Tabs/Video/Fullscreen.pressed = Save.user_data.get("video").get("fullscreen") # Fullscreen
+	settings.get_node("Video/Fullscreen").pressed = Save.user_data.get("video").get("fullscreen") # Fullscreen
 
 ##
 # Credits
