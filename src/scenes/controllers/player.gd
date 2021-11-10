@@ -33,7 +33,7 @@ const SWAY : float = 35.0
 # Node variables
 onready var head = get_node("Head")
 onready var weaponlocation = get_node("Head/WeaponLocation")
-onready var weaponroot = get_node("Head/Weaponroot")
+onready var weaponroot = get_node("Head/Hands")
 
 ##
 # Functions
@@ -74,6 +74,8 @@ func process_combat():
 	if weaponroot.get_child_count() > 0:
 		if Input.is_action_just_pressed("fire"):
 			weaponroot.get_node(str(selected_weapon)).primary()
+		if Input.is_action_just_pressed("alt_fire"):
+			weaponroot.get_node(str(selected_weapon)).secondary()
 	else:
 		var knife = load("res://scenes/weapons/knife.tscn").instance()
 		var shotgun = load("res://scenes/weapons/shotgun.tscn").instance()

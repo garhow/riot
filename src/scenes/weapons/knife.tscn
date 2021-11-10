@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://meshes/weapons/knife/Handle.material" type="Material" id=1]
 [ext_resource path="res://meshes/weapons/knife/Blade.material" type="Material" id=2]
@@ -32,6 +32,7 @@ surfaces/1 = {
 }
 
 [sub_resource type="Animation" id=2]
+resource_name = "Slash"
 length = 0.7
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:translation")
@@ -40,10 +41,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3, 0.4, 0.5, 0.7 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.3, 0.4, 0.5, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector3( 0, 0, 0 ), Vector3( 0.943, -0.197, -0.212 ), Vector3( -1.49001, -0.195663, -1.1442 ), Vector3( -1.49001, -0.195663, -1.1442 ), Vector3( 0, 0, 0 ) ]
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0.763037, -0.0584199, -0.709143 ), Vector3( 0.943, -0.197, -0.212 ), Vector3( -1.49001, -0.195663, -1.1442 ), Vector3( -1.49001, -0.195663, -1.1442 ), Vector3( 0, 0, 0 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:rotation_degrees")
@@ -58,15 +59,45 @@ tracks/1/keys = {
 "values": [ Vector3( 0, 100, 80 ), Vector3( 72.0362, 67.0542, 55.7344 ), Vector3( 69.3493, 148.285, 24.8213 ), Vector3( 0, 100, 80 ) ]
 }
 
+[sub_resource type="Animation" id=3]
+resource_name = "Stab"
+length = 0.65
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:translation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.35, 0.4, 0.5, 0.65 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 1, 0, -1.18594 ), Vector3( 0.867188, 0, -2.7345 ), Vector3( 0.422324, 0, -2.7345 ), Vector3( -1.09616, 0, -2.75271 ), Vector3( -0.973476, 0, -0.895067 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotation_degrees")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.25, 0.35, 0.5, 0.65 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 100, 80 ), Vector3( -58.5251, 62.2594, 63.2604 ), Vector3( -80.0344, -21.6996, 130.215 ), Vector3( -76.9156, -40.9921, 162.714 ), Vector3( -22.6743, 66.848, 105.711 ), Vector3( 0, 100, 80 ) ]
+}
+
 [node name="Knife" type="Spatial"]
-transform = Transform( -0.0301537, 0.17101, 0.984808, 0.984808, 0.173648, 0, -0.17101, 0.969846, -0.173648, 0, 0, 0 )
+transform = Transform( -0.0301537, 0.17101, 0.984807, 0.984808, 0.173648, 0, -0.17101, 0.969846, -0.173648, 0, 0, 0 )
 script = ExtResource( 3 )
 
 [node name="Knife" type="MeshInstance" parent="."]
-transform = Transform( 0.261088, 0, 0, 0, 0.261088, 0, 0, 0, 0.261088, 0, 0, 0 )
+transform = Transform( 0.261088, -7.45058e-09, 0, 1.49012e-08, 0.261088, 6.51926e-09, -3.72529e-09, -7.45058e-09, 0.261088, 0, 0, 0 )
 mesh = SubResource( 1 )
 material/0 = null
 material/1 = null
 
 [node name="Animation" type="AnimationPlayer" parent="."]
-anims/Stab = SubResource( 2 )
+anims/Slash = SubResource( 2 )
+anims/Stab = SubResource( 3 )

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/controllers/player.gd" type="Script" id=1]
 [ext_resource path="res://scenes/menu/player_hud.tscn" type="PackedScene" id=2]
@@ -11,54 +11,6 @@ mid_height = 1.5
 margin = 0.001
 radius = 0.5
 height = 1.5
-
-[sub_resource type="Animation" id=3]
-length = 3.0
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:translation")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector3( 0, 0, 0 ), Vector3( 0, -0.05, 0 ) ]
-}
-
-[sub_resource type="Animation" id=4]
-length = 1.6
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:translation")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.8 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector3( 0, 0, 0 ), Vector3( 0, -0.125, 0 ) ]
-}
-
-[sub_resource type="Animation" id=5]
-length = 2.0
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:translation")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector3( 0, 0, 0 ), Vector3( 0, -0.075, 0 ) ]
-}
 
 [node name="Player" type="KinematicBody" groups=[
 "players",
@@ -82,24 +34,18 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
 [node name="Camroot" type="Spatial" parent="Head"]
 
 [node name="Camera" type="Camera" parent="Head/Camroot"]
-transform = Transform( 1, 0, 0, 0, 1, 1.11764e-08, 0, -1.11764e-08, 1, 0, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 1.11764e-08, 0, -1.11764e-08, 1, 0, -0.0398297, 0 )
 doppler_tracking = 2
 current = true
 fov = 85.0
 near = 0.01
 far = 1024.0
 
-[node name="Animation" type="AnimationPlayer" parent="Head/Camroot/Camera"]
-playback_default_blend_time = 0.2
-"anims/Idle Bobbing" = SubResource( 3 )
-"anims/Run Bobbing" = SubResource( 4 )
-"anims/Walk Bobbing" = SubResource( 5 )
-
-[node name="Weaponroot" type="Position3D" parent="Head"]
+[node name="Hands" type="Position3D" parent="Head"]
 transform = Transform( 0.099313, 0, 0.0117017, 0, 0.1, 0, -0.0117017, 0, 0.099313, 0.115, -0.12, -0.425 )
 
 [node name="WeaponLocation" type="Position3D" parent="Head"]
-transform = Transform( 0.099313, 0, 0.0117017, 0, 0.1, 0, -0.0117017, 0, 0.099313, 0.115, -0.12, -0.425 )
+transform = Transform( 0.099313, 0, 0.0117017, 0, 0.1, 0, -0.0117017, 0, 0.099313, 0.115, -0.15, -0.425 )
 
 [node name="Guncast" type="RayCast" parent="Head"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5 )
@@ -107,11 +53,8 @@ enabled = true
 cast_to = Vector3( 0, 0, -100 )
 
 [node name="Meleecast" type="RayCast" parent="Head"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5 )
 enabled = true
-cast_to = Vector3( 0, 0, -0.6 )
-
-[node name="WeaponCasts" type="Spatial" parent="Head"]
+cast_to = Vector3( 0, 0, -1.2 )
 
 [node name="Footcast" type="RayCast" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -0.3 )
