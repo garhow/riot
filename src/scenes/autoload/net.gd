@@ -5,6 +5,7 @@ const MAX_PLAYERS : int = 12
 const HOST_RATE : float = 1.0/20.0
 const PEER_RATE : float = 1.0/60.0
 var network : NetworkedMultiplayerENet = NetworkedMultiplayerENet.new()
+var connected_to_server : bool = false
 
 # Client-side data
 var player_data : Dictionary = {}
@@ -27,12 +28,6 @@ func _physics_process(_delta): # Run once for each frame
 		else:
 			rpc_unreliable_id(1, "update_peer", Game.player.translation, Game.player.rotation.y, Game.player.get_node("Head").rotation.x, Game.player.velocity)
 
-func is_connected_to_server(): # Returns true if connected to server
-	if get_tree().network_peer == null:
-		return false
-	else:
-		return true
-
 func get_player_data(): # Returns local player data
 	return {name=Save.user_data.get("user").get("username")}
 
@@ -51,6 +46,7 @@ func server_disconnect(): # Attempts to gracefully close a server or disconnect 
 	Game.remove_map()
 	Game.remove_controller(get_tree().get_network_unique_id())
 	player_data = {}
+	connected_to_server = false
 	get_tree().network_peer = null
 	network.close_connection()
 	Game.menu.visible = true
@@ -82,9 +78,10 @@ remote func apply_player_data(): # Applies player data given to by the server
 		if id != get_tree().get_network_unique_id():
 			Game.main.get_node(str(id)).get_node("Nametag/Viewport/Panel/Label").text = player_data[id].get("name")
 
-remote func load_server_data(data): # Loads given server data
+remote func confirm_handshake(data): # Loads given server data
 	server_data = data
-	_on_loaded_server_data()
+	connected_to_server = true
+	_on_handshake()
 
 ####
 ## Server networking functions
@@ -95,6 +92,7 @@ func create_server(port : int, max_players : int, map : String):
 	get_tree().connect("network_peer_disconnected", self, "_on_peer_disconnected")
 	network.create_server(port, max_players)
 	get_tree().set_network_peer(network)
+	connected_to_server = true
 	player_data[1] = get_player_data()
 	map_name = map
 	Logger.out([Logger.get_prefix("Networking", "Info"), "Now hosting a server on port ", str(port), "!"])
@@ -120,7 +118,7 @@ func _on_peer_connected(id):
 	Logger.out([Logger.get_prefix("Networking", "Info"), str(id), " has connected to the server!"])
 	rpc_id(id, "register_player_data", get_player_data())
 	if get_tree().get_network_unique_id() == 1:
-		rpc_id(id, "load_server_data", get_server_data())
+		rpc_id(id, "confirm_handshake", get_server_data())
 	Game.spawn_controller(id, 1)
 
 func _on_peer_disconnected(id):
@@ -131,11 +129,12 @@ func _on_peer_disconnected(id):
 func _on_connected_to_server():
 	Logger.out([Logger.get_prefix("Networking", "Info"), "Established a connection with server."])
 
-func _on_loaded_server_data():
-	Logger.out([Logger.get_prefix("Networking", "Info"), "Loading server data."])
+func _on_handshake():
+	Logger.out([Logger.get_prefix("Networking", "Info"), "Shook hands with server. Now loading server data."])
 	Game.spawn_map(server_data["map"])
 	Game.spawn_controller(get_tree().get_network_unique_id(), 0)
 	Game.toggle_menu()
+	Game.menu.get_node("Center/Connecting").visible = false
 
 func _on_connection_failed():
 	Logger.out([Logger.get_prefix("Networking", "Info"), "Connection to the server failed!"])

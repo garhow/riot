@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://misc/main_theme.tres" type="Theme" id=1]
 [ext_resource path="res://fonts/xolonium/ttf/Xolonium-Bold.ttf" type="DynamicFontData" id=2]
@@ -24,6 +24,14 @@ font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=5]
 size = 18
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 24
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 24
 font_data = ExtResource( 2 )
 
 [sub_resource type="StyleBoxFlat" id=6]
@@ -542,6 +550,71 @@ margin_bottom = 210.0
 theme = ExtResource( 5 )
 text = "Connect"
 
+[node name="Connecting" type="Control" parent="Center" groups=[
+"submenu",
+]]
+visible = false
+margin_left = 960.0
+margin_top = 540.0
+margin_right = 960.0
+margin_bottom = 540.0
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="Center/Connecting"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -212.0
+margin_top = -75.0
+margin_right = 212.0
+margin_bottom = 75.0
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBox" type="VBoxContainer" parent="Center/Connecting/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = 20.0
+margin_right = -20.0
+margin_bottom = -20.0
+theme = ExtResource( 1 )
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Label" type="Label" parent="Center/Connecting/Panel/VBox"]
+margin_top = 13.0
+margin_right = 384.0
+margin_bottom = 43.0
+theme = ExtResource( 1 )
+custom_fonts/font = SubResource( 7 )
+text = "Connecting to server..."
+
+[node name="Separator" type="HSeparator" parent="Center/Connecting/Panel/VBox"]
+margin_top = 47.0
+margin_right = 384.0
+margin_bottom = 51.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="Center/Connecting/Panel/VBox"]
+margin_top = 55.0
+margin_right = 384.0
+margin_bottom = 97.0
+theme = ExtResource( 1 )
+custom_fonts/font = SubResource( 9 )
+text = "Cancel"
+
 [node name="Settings" type="Control" parent="Center" groups=[
 "submenu",
 ]]
@@ -715,6 +788,7 @@ selection_enabled = true
 [connection signal="pressed" from="Container/VBox/VBox/Quit" to="." method="_on_Quit_pressed"]
 [connection signal="pressed" from="Center/Credits/Panel/VBox/Close" to="." method="_on_Credits_Close_pressed"]
 [connection signal="pressed" from="Center/Join/Panel/VBox/Connect" to="." method="_on_Connect_pressed"]
+[connection signal="pressed" from="Center/Connecting/Panel/VBox/Button" to="." method="_on_Cancel_Connection_pressed"]
 [connection signal="pressed" from="Center/Settings/Tabs/Mouse/SaveChanges" to="." method="_on_SaveChanges_pressed"]
 [connection signal="pressed" from="Center/Settings/Tabs/User/SaveChanges" to="." method="_on_SaveChanges_pressed"]
 [connection signal="pressed" from="Center/Settings/Tabs/Video/SaveChanges" to="." method="_on_SaveChanges_pressed"]

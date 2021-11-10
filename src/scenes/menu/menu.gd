@@ -40,7 +40,16 @@ func _on_Connect_pressed():
 	else:
 		port = Net.PORT
 	Net.create_client(address, port)
-	$Center/Join.visible = false
+	hide_all_submenus()
+	$Center/Connecting.visible = true
+
+func _on_Cancel_Connection_pressed():
+	if Net.connected_to_server == false:
+		get_tree().network_peer = null
+		Net.network.close_connection()
+	else:
+		Net.server_disconnect()
+	$Center/Connecting.visible = false
 
 ##
 # Disconnect
@@ -106,12 +115,12 @@ func toggle_menu(control):
 		control.visible = false
 
 func network_check():
-	if Net.is_connected_to_server():
+	if Net.connected_to_server == true:
 		$Background.color = Color8(55, 0, 0, 125)
 		$Container/VBox/VBox/Host.visible = false
 		$Container/VBox/VBox/Join.visible = false
 		$Container/VBox/VBox/Disconnect.visible = true
-	else:
+	elif Net.connected_to_server == false:
 		$Background.color = Color8(55, 0, 0, 255)
 		$Container/VBox/VBox/Host.visible = true
 		$Container/VBox/VBox/Join.visible = true

@@ -24,7 +24,7 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
 func _process(_delta):
-	if Input.is_action_just_pressed("ui_cancel") and Net.is_connected_to_server():
+	if Input.is_action_just_pressed("ui_cancel") and Net.connected_to_server == true:
 		toggle_menu()
 	if Input.is_action_just_pressed("toggle_console"):
 		toggle_console()
