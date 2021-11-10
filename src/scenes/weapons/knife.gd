@@ -11,7 +11,9 @@ func primary():
 		if cast.is_colliding():
 			var target = cast.get_collider()
 			if target.is_in_group("player") or target.is_in_group("dummy"):
-				target.health -= 20
+				var damage = 20
+				Game.player.hud.hit_enemy(damage)
+				target.health -= damage
 
 func secondary():
 	if not $Animation.is_playing():
@@ -19,4 +21,6 @@ func secondary():
 		if cast.is_colliding():
 			var target = cast.get_collider()
 			if target.is_in_group("player") or target.is_in_group("dummy"):
-				target.health -= 60
+				var damage = 60
+				Game.player.hud.hit_enemy(damage)
+				target.health -= damage

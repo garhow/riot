@@ -26,8 +26,6 @@ material/0 = null
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
 shape = SubResource( 2 )
 
-[node name="HUD" parent="." instance=ExtResource( 2 )]
-
 [node name="Head" type="Position3D" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
 
@@ -40,6 +38,8 @@ current = true
 fov = 85.0
 near = 0.01
 far = 1024.0
+
+[node name="HUD" parent="Head/Camroot/Camera" instance=ExtResource( 2 )]
 
 [node name="Hands" type="Position3D" parent="Head"]
 transform = Transform( 0.099313, 0, 0.0117017, 0, 0.1, 0, -0.0117017, 0, 0.099313, 0.115, -0.12, -0.425 )

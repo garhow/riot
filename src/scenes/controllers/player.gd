@@ -32,6 +32,7 @@ const SWAY : float = 35.0
 
 # Node variables
 onready var head = get_node("Head")
+onready var hud = get_node("Head/Camroot/Camera/HUD")
 onready var weaponlocation = get_node("Head/WeaponLocation")
 onready var weaponroot = get_node("Head/Hands")
 
