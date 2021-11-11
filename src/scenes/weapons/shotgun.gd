@@ -1,5 +1,7 @@
 extends Spatial
 
+const MAX_DAMAGE = 128
+
 var shot : int = 0
 var muzzle_flash = preload("res://particles/weapons/shotgun/muzzle_flash.tscn")
 
@@ -20,6 +22,8 @@ func primary():
 			var target = cast.get_collider()
 			if target.is_in_group("player") or target.is_in_group("dummy"):
 				var damage = 30 / cast.global_transform.origin.distance_to(cast.get_collision_point()) * 4
+				if damage > MAX_DAMAGE:
+					damage = MAX_DAMAGE
 				Game.player.hud.hit_enemy(damage)
 				target.health -= damage
 
