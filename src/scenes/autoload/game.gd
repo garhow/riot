@@ -15,8 +15,9 @@ var controllers = [
 ]
 
 var maps : Dictionary = {
-	"test_classic": preload("res://scenes/maps/test/classic.tscn"),
-	"test_practice": preload("res://scenes/maps/test/practice.tscn")
+	"test_arena": load("res://scenes/maps/test/arena.tscn"),
+	"test_classic": load("res://scenes/maps/test/classic.tscn"),
+	"test_practice": load("res://scenes/maps/test/practice.tscn")
 }
 
 func _ready():

@@ -1,0 +1,187 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://materials/generic/alt_wall.tres" type="Material" id=1]
+[ext_resource path="res://materials/generic/base.tres" type="Material" id=2]
+[ext_resource path="res://materials/generic/alt_base.tres" type="Material" id=3]
+
+[node name="Map" type="Spatial"]
+
+[node name="CSGCombiner" type="CSGCombiner" parent="."]
+snap = 0.0001
+use_collision = true
+
+[node name="Floor" type="CSGBox" parent="CSGCombiner"]
+width = 40.0
+depth = 40.0
+material = ExtResource( 2 )
+
+[node name="Center" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0 )
+width = 8.0
+height = 6.0
+depth = 8.0
+material = ExtResource( 1 )
+
+[node name="CSGBox" type="CSGBox" parent="CSGCombiner/Center"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
+operation = 2
+width = 4.0
+height = 4.0
+depth = 8.0
+material = ExtResource( 1 )
+
+[node name="CSGBox2" type="CSGBox" parent="CSGCombiner/Center"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
+operation = 2
+width = 8.0
+height = 4.0
+depth = 4.0
+material = ExtResource( 1 )
+
+[node name="Center2" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0 )
+width = 8.0
+height = 6.0
+depth = 8.0
+material = ExtResource( 1 )
+
+[node name="CSGBox" type="CSGBox" parent="CSGCombiner/Center2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
+operation = 2
+width = 4.0
+height = 4.0
+depth = 8.0
+material = ExtResource( 1 )
+
+[node name="CSGBox2" type="CSGBox" parent="CSGCombiner/Center2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0 )
+operation = 2
+width = 8.0
+height = 4.0
+depth = 4.0
+material = ExtResource( 1 )
+
+[node name="Bridge" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 0 )
+width = 40.0
+height = 1.0
+depth = 4.0
+material = ExtResource( 3 )
+
+[node name="CSGBox" type="CSGBox" parent="CSGCombiner/Bridge"]
+operation = 2
+width = 8.0
+depth = 4.0
+material = ExtResource( 3 )
+
+[node name="Bridge2" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 6.5, 0 )
+width = 40.0
+height = 1.0
+depth = 4.0
+material = ExtResource( 3 )
+
+[node name="CSGBox" type="CSGBox" parent="CSGCombiner/Bridge2"]
+operation = 2
+width = 8.0
+depth = 4.0
+material = ExtResource( 3 )
+
+[node name="Wall" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0 )
+width = 40.0
+height = 6.0
+depth = 40.0
+material = ExtResource( 1 )
+
+[node name="CSGBox" type="CSGBox" parent="CSGCombiner/Wall"]
+operation = 2
+width = 36.0
+height = 10.0
+depth = 36.0
+material = ExtResource( 1 )
+
+[node name="Ramp" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 4, -16 )
+width = 12.0
+height = 6.0
+depth = 4.0
+material = ExtResource( 3 )
+
+[node name="CSGBox" type="CSGBox" parent="CSGCombiner/Ramp"]
+transform = Transform( 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0, 1, 0, 3, 0 )
+operation = 2
+width = 18.0
+height = 6.0
+depth = 4.0
+material = ExtResource( 3 )
+
+[node name="Ramp2" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 4, 16 )
+width = 12.0
+height = 6.0
+depth = 4.0
+material = ExtResource( 3 )
+
+[node name="CSGBox" type="CSGBox" parent="CSGCombiner/Ramp2"]
+transform = Transform( 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0, 1, 0, 3, 0 )
+operation = 2
+width = 18.0
+height = 6.0
+depth = 4.0
+material = ExtResource( 3 )
+
+[node name="Ramp3" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 12, 4, 16 )
+width = 12.0
+height = 6.0
+depth = 4.0
+material = ExtResource( 3 )
+
+[node name="CSGBox" type="CSGBox" parent="CSGCombiner/Ramp3"]
+transform = Transform( 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0, 1, 0, 3, 0 )
+operation = 2
+width = 18.0
+height = 6.0
+depth = 4.0
+material = ExtResource( 3 )
+
+[node name="Ramp4" type="CSGBox" parent="CSGCombiner"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 12, 4, -16 )
+width = 12.0
+height = 6.0
+depth = 4.0
+material = ExtResource( 3 )
+
+[node name="CSGBox" type="CSGBox" parent="CSGCombiner/Ramp4"]
+transform = Transform( 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0, 1, 0, 3, 0 )
+operation = 2
+width = 18.0
+height = 6.0
+depth = 4.0
+material = ExtResource( 3 )
+
+[node name="Spawns" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
+
+[node name="Spawn" type="Position3D" parent="Spawns"]
+
+[node name="Spawn2" type="Position3D" parent="Spawns"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0 )
+
+[node name="Spawn3" type="Position3D" parent="Spawns"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0 )
+
+[node name="Spawn4" type="Position3D" parent="Spawns"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.74846e-07, 0, 4 )
+
+[node name="Spawn5" type="Position3D" parent="Spawns"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1.74846e-07, 0, -4 )
+
+[node name="Sun" type="DirectionalLight" parent="."]
+transform = Transform( 0.464833, -0.8384, -0.284633, -0.309976, -0.455228, 0.834675, -0.829365, -0.299755, -0.471488, -5.98475, 19.2049, -26.5339 )
+light_color = Color( 0.839216, 0.803922, 0.713726, 1 )
+light_bake_mode = 2
+shadow_enabled = true
+directional_shadow_blend_splits = true
+directional_shadow_max_distance = 512.0
