@@ -11,11 +11,21 @@ func _ready():
 	pass
 
 func _process(_delta):
-	pass
+	if not $Animation.is_playing() and not $Tween.is_active():
+		if shot > 0:
+			$Animation.play("Pump")
 
 func primary():
-	if not $Animation.is_playing():
-		$Animation.play("Fire")
+	if not $Animation.is_playing() and not $Tween.is_active():
+		var origin = transform.origin
+		var degrees = rotation_degrees
+		var multiplier = rand_range(0.25, 1)
+		$Tween.interpolate_property(self, "translation", origin, Vector3(origin.x, origin.y, origin.z+multiplier), 0.2, Tween.TRANS_LINEAR, Tween.TRANS_LINEAR)
+		$Tween.interpolate_property(self, "translation", Vector3(origin.x, origin.y, origin.z+multiplier), origin, 0.2, Tween.TRANS_LINEAR, Tween.TRANS_LINEAR)
+		$Tween.interpolate_property(self, "rotation_degrees", degrees, Vector3(degrees.x, degrees.y, degrees.z+multiplier*5), 0.2, Tween.TRANS_LINEAR, Tween.TRANS_LINEAR)
+		$Tween.interpolate_property(self, "rotation_degrees", Vector3(degrees.x, degrees.y, degrees.z+multiplier*5), degrees, 0.2, Tween.TRANS_LINEAR, Tween.TRANS_LINEAR)
+		$Tween.start()
+		shot += 1
 		var flash = muzzle_flash.instance()
 		flash.emitting = true
 		if cast.is_colliding():
@@ -34,9 +44,5 @@ func _on_Animation_animation_started(_anim_name):
 	pass
 
 func _on_Animation_animation_finished(anim_name):
-	if anim_name == "Fire":
-		shot += 1
-	elif anim_name == "Pump":
+	if anim_name == "Pump":
 		shot -= 1
-	if shot > 0:
-		$Animation.play("Pump")

@@ -39,6 +39,10 @@ config/icon="res://misc/icon.png"
 config/version="0.1.0-rc1"
 config/protocol_version=6
 
+[audio]
+
+default_bus_layout="res://misc/default_bus_layout.tres"
+
 [autoload]
 
 Game="*res://scenes/autoload/game.gd"

@@ -17,6 +17,7 @@ const JUMP_FORCE : float = 6.4
 const sprint_speed : float = 5.0
 const sneak_speed : float = 2.0
 var direction : Vector3
+var grounded : bool
 var jumping : bool
 var movement : Vector3
 var speed : float
@@ -135,9 +136,19 @@ func process_rotation(delta : float):
 	camera_rotation = Vector2.ZERO
 
 func air_move(_delta : float):
+	grounded = false
 	pass # Placeholder for air strafing and other things
 
 func ground_move(_delta : float):
+	if not grounded:
+		var sound = AudioStreamPlayer3D.new()
+		add_child(sound)
+		sound.bus = "Sound Effects"
+		sound.stream = load("res://sounds/player/walk"+str(floor(rand_range(1, 3)))+".mp3")
+		sound.stream.loop = false
+		sound.play()
+	grounded = true
 	if jumping:
+		grounded = false
 		jumping = false
 		velocity.y = Vector3.UP.y * JUMP_FORCE
