@@ -4,7 +4,7 @@
 [ext_resource path="res://meshes/weapons/shotgun/Wood.material" type="Material" id=2]
 [ext_resource path="res://scenes/weapons/shotgun.gd" type="Script" id=4]
 
-[sub_resource type="ArrayMesh" id=8]
+[sub_resource type="ArrayMesh" id=1]
 resource_name = "Body"
 surfaces/0 = {
 "aabb": AABB( -13.4183, -4.23411, -1.11304, 8.43624, 4.55303, 2.22609 ),
@@ -31,7 +31,7 @@ surfaces/1 = {
 "vertex_count": 247
 }
 
-[sub_resource type="ArrayMesh" id=9]
+[sub_resource type="ArrayMesh" id=2]
 resource_name = "Barrel"
 surfaces/0 = {
 "aabb": AABB( -0.365556, -1.38672, -1.16218, 4.83505, 14.2708, 2.32437 ),
@@ -46,7 +46,7 @@ surfaces/0 = {
 "vertex_count": 422
 }
 
-[sub_resource type="ArrayMesh" id=10]
+[sub_resource type="ArrayMesh" id=3]
 resource_name = "Pump Handle"
 surfaces/0 = {
 "aabb": AABB( -0.959877, -0.916667, -0.916667, 1.91975, 1.83333, 1.83333 ),
@@ -61,7 +61,7 @@ surfaces/0 = {
 "vertex_count": 365
 }
 
-[sub_resource type="ArrayMesh" id=11]
+[sub_resource type="ArrayMesh" id=4]
 resource_name = "Trigger Guard"
 surfaces/0 = {
 "aabb": AABB( -1.59028, -0.0795705, -1.7619, 3.33316, 0.159151, 2.7619 ),
@@ -76,7 +76,7 @@ surfaces/0 = {
 "vertex_count": 342
 }
 
-[sub_resource type="ArrayMesh" id=12]
+[sub_resource type="ArrayMesh" id=5]
 resource_name = "Trigger"
 surfaces/0 = {
 "aabb": AABB( -0.988351, -0.0905327, -1.19918, 1.46491, 0.181075, 2.12306 ),
@@ -191,28 +191,28 @@ script = ExtResource( 4 )
 
 [node name="Body" type="MeshInstance" parent="."]
 transform = Transform( 0.3, 0, 9.31323e-10, 0, 0.3, 0, 0, 0, 0.12, 0, 0.5, 0 )
-mesh = SubResource( 8 )
+mesh = SubResource( 1 )
 material/0 = null
 material/1 = null
 
 [node name="Barrel" type="MeshInstance" parent="."]
 transform = Transform( 1.47435e-08, 0.25634, 4.65661e-10, -0.0824513, 4.58372e-08, 0, 0, -1.86265e-09, 0.0824513, 0.241866, 0.61868, -7.45058e-09 )
-mesh = SubResource( 9 )
+mesh = SubResource( 2 )
 material/0 = null
 
 [node name="Pump Handle" type="MeshInstance" parent="."]
 transform = Transform( 0.534048, -2.79397e-09, 7.45058e-09, 3.72529e-08, 0.127661, -1.234e-08, 7.45058e-09, 1.07102e-08, 0.133054, 1.44912, 0.317361, -7.45058e-09 )
-mesh = SubResource( 10 )
+mesh = SubResource( 3 )
 material/0 = null
 
 [node name="Trigger Guard" type="MeshInstance" parent="."]
 transform = Transform( 0.193917, -1.86265e-09, 0.00470997, 0.00810696, 3.42505e-08, -0.112662, 9.31323e-10, 0.287314, 1.34169e-08, -1.18803, 0.107187, 7.45058e-09 )
-mesh = SubResource( 11 )
+mesh = SubResource( 4 )
 material/0 = null
 
 [node name="Trigger" type="MeshInstance" parent="."]
 transform = Transform( 0.0982677, 1.09266e-09, -0.0170623, -0.0154526, 1.39824e-08, -0.108504, 9.54872e-10, 0.113829, 1.34921e-08, -1.18838, 0.134118, 1.49012e-08 )
-mesh = SubResource( 12 )
+mesh = SubResource( 5 )
 material/0 = null
 
 [node name="Animation" type="AnimationPlayer" parent="."]
