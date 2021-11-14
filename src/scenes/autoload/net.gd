@@ -66,7 +66,15 @@ func create_client(address : String, port : int): # Connects to a server
 	get_tree().set_network_peer(network)
 	Logger.out([Logger.get_prefix("Networking", "Info"), "Now connecting to ", address, ":", str(port), "!"])
 
+# Var details:
+# ry: body rotation on the y axis
+# hrx: head rotation on the x axis
+# t is transform/position 
 remote func update_peer(t : Vector3, ry : float, hrx : float , v : Vector3): # Updates a peer node with information given by the server
+	# Harvey298 - Simple anti-cheat - Hack: Jump Boost - UNTESTED
+	var max_jump : float = 6.4 # same value as JUMP_FORCE in player.gd
+	if v.y > max_jump: # if this is true then player is hacking
+		return
 	var peer = Game.main.get_node(str(get_tree().get_rpc_sender_id()))
 	peer.translation = t
 	peer.rotation.y = ry
