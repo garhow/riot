@@ -36,7 +36,8 @@ config/name="Riot"
 config/description="A multiplayer team-based shooter"
 run/main_scene="res://scenes/main.tscn"
 config/icon="res://misc/icon.png"
-config/version="0.1.0-rc1"
+config/windows_native_icon="res://misc/icon.ico"
+config/version="0.1.0-rc2"
 config/protocol_version=6
 
 [audio]

@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://materials/generic/alt_wall.tres" type="Material" id=1]
-[ext_resource path="res://materials/generic/base.tres" type="Material" id=2]
 [ext_resource path="res://materials/generic/alt_base.tres" type="Material" id=3]
 
 [node name="Map" type="Spatial"]
@@ -13,7 +12,7 @@ use_collision = true
 [node name="Floor" type="CSGBox" parent="CSGCombiner"]
 width = 40.0
 depth = 40.0
-material = ExtResource( 2 )
+material = ExtResource( 3 )
 
 [node name="Center" type="CSGBox" parent="CSGCombiner"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0 )
