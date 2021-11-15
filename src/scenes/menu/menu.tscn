@@ -622,7 +622,6 @@ text = "Cancel"
 [node name="Settings" type="Control" parent="Center" groups=[
 "submenu",
 ]]
-visible = false
 margin_left = 960.0
 margin_top = 540.0
 margin_right = 960.0
@@ -648,6 +647,7 @@ __meta__ = {
 }
 
 [node name="Mouse" type="VBoxContainer" parent="Center/Settings/Tabs"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 12.0
@@ -719,17 +719,16 @@ margin_bottom = 54.0
 [node name="Separator" type="HSeparator" parent="Center/Settings/Tabs/User"]
 margin_top = 58.0
 margin_right = 400.0
-margin_bottom = 158.0
+margin_bottom = 258.0
 size_flags_vertical = 3
 
 [node name="SaveChanges" type="Button" parent="Center/Settings/Tabs/User"]
-margin_top = 162.0
+margin_top = 262.0
 margin_right = 400.0
-margin_bottom = 196.0
+margin_bottom = 296.0
 text = "Save changes"
 
 [node name="Video" type="VBoxContainer" parent="Center/Settings/Tabs"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 12.0
@@ -741,36 +740,35 @@ size_flags_vertical = 3
 
 [node name="FOV" type="VBoxContainer" parent="Center/Settings/Tabs/Video"]
 margin_right = 400.0
-margin_bottom = 42.0
+margin_bottom = 54.0
 
 [node name="Label" type="Label" parent="Center/Settings/Tabs/Video/FOV"]
-margin_top = 20.0
 margin_right = 400.0
-margin_bottom = 42.0
+margin_bottom = 22.0
 text = "Field of View"
 
-[node name="Slider" type="HSlider" parent="Center/Settings/Tabs/Video/FOV"]
+[node name="Input" type="SpinBox" parent="Center/Settings/Tabs/Video/FOV"]
+margin_top = 26.0
 margin_right = 400.0
-margin_bottom = 16.0
+margin_bottom = 54.0
 size_flags_horizontal = 3
 theme = ExtResource( 1 )
 min_value = 60.0
 max_value = 110.0
 step = 5.0
-value = 80.0
-scrollable = false
-tick_count = 6
-ticks_on_borders = true
+value = 70.0
+rounded = true
+suffix = "°"
 
 [node name="Separator3" type="HSeparator" parent="Center/Settings/Tabs/Video"]
-margin_top = 46.0
+margin_top = 58.0
 margin_right = 400.0
-margin_bottom = 50.0
+margin_bottom = 62.0
 
 [node name="FPS" type="VBoxContainer" parent="Center/Settings/Tabs/Video"]
-margin_top = 54.0
+margin_top = 66.0
 margin_right = 400.0
-margin_bottom = 108.0
+margin_bottom = 120.0
 
 [node name="Label" type="Label" parent="Center/Settings/Tabs/Video/FPS"]
 margin_right = 400.0
@@ -785,31 +783,61 @@ min_value = 1.0
 max_value = 120.0
 value = 60.0
 rounded = true
+suffix = "FPS"
 
 [node name="Separator" type="HSeparator" parent="Center/Settings/Tabs/Video"]
-margin_top = 112.0
+margin_top = 124.0
 margin_right = 400.0
-margin_bottom = 116.0
+margin_bottom = 128.0
 
-[node name="Fullscreen" type="CheckBox" parent="Center/Settings/Tabs/Video"]
-margin_top = 120.0
+[node name="Mode" type="VBoxContainer" parent="Center/Settings/Tabs/Video"]
+margin_top = 132.0
 margin_right = 400.0
-margin_bottom = 154.0
-text = "Fullscreen"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+margin_bottom = 192.0
+
+[node name="Label" type="Label" parent="Center/Settings/Tabs/Video/Mode"]
+margin_right = 400.0
+margin_bottom = 22.0
+text = "Display Mode"
+
+[node name="Options" type="OptionButton" parent="Center/Settings/Tabs/Video/Mode"]
+margin_top = 26.0
+margin_right = 400.0
+margin_bottom = 60.0
+text = "Windowed"
+items = [ "Windowed", null, false, 0, null, "Fullscreen", null, false, 1, null, "Borderless Fullscreen", null, false, 2, null ]
+selected = 0
+
+[node name="Separator4" type="HSeparator" parent="Center/Settings/Tabs/Video"]
+margin_top = 196.0
+margin_right = 400.0
+margin_bottom = 200.0
+
+[node name="Resolution" type="VBoxContainer" parent="Center/Settings/Tabs/Video"]
+margin_top = 204.0
+margin_right = 400.0
+margin_bottom = 264.0
+
+[node name="Label" type="Label" parent="Center/Settings/Tabs/Video/Resolution"]
+margin_right = 400.0
+margin_bottom = 22.0
+text = "Display Resolution"
+
+[node name="Options" type="OptionButton" parent="Center/Settings/Tabs/Video/Resolution"]
+margin_top = 26.0
+margin_right = 400.0
+margin_bottom = 60.0
 
 [node name="Separator2" type="HSeparator" parent="Center/Settings/Tabs/Video"]
-margin_top = 158.0
+margin_top = 268.0
 margin_right = 400.0
-margin_bottom = 162.0
+margin_bottom = 298.0
 size_flags_vertical = 3
 
 [node name="SaveChanges" type="Button" parent="Center/Settings/Tabs/Video"]
-margin_top = 166.0
+margin_top = 302.0
 margin_right = 400.0
-margin_bottom = 200.0
+margin_bottom = 336.0
 text = "Save changes"
 
 [node name="Console" type="PanelContainer" parent="."]

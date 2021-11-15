@@ -4,6 +4,9 @@ onready var settings = get_node("Center/Settings/Tabs")
 
 func _ready():
 	$Container/Version.text = "v"+Game.version
+	for resolution in Video.RESOLUTIONS:
+		if resolution.x <= OS.get_screen_size().x and resolution.y <= OS.get_screen_size().y:
+			Game.menu.get_node("Center/Settings/Tabs/Video/Resolution/Options").add_item(str(resolution.x) + "×" + str(resolution.y))
 	load_settings()
 
 func _process(_delta):
@@ -70,9 +73,10 @@ func _on_SaveChanges_pressed():
 	Save.user_data = {
 		"mouse_sensitivity": settings.get_node("Mouse/Sensitivity/Slider").value,
 		"user_name": settings.get_node("User/Username/Input").text,
-		"video_fov": settings.get_node("Video/FOV/Slider").value,
+		"video_fov": settings.get_node("Video/FOV/Input").value,
 		"video_fps": settings.get_node("Video/FPS/Input").value,
-		"video_fullscreen": settings.get_node("Video/Fullscreen").pressed
+		"video_mode": settings.get_node("Video/Mode/Options").selected,
+		"video_resolution": settings.get_node("Video/Resolution/Options").selected
 	}
 	Save.save_data()
 	
@@ -82,9 +86,10 @@ func load_settings():
 	# User
 	settings.get_node("User/Username/Input").text = Save.user_data.get("user_name") # Username
 	# Video
-	settings.get_node("Video/FOV/Slider").value = Save.user_data.get("video_fov") # Field of View
+	settings.get_node("Video/FOV/Input").value = Save.user_data.get("video_fov") # Field of View
 	settings.get_node("Video/FPS/Input").value = Save.user_data.get("video_fps") # FPS limit
-	settings.get_node("Video/Fullscreen").pressed = Save.user_data.get("video_fullscreen") # Fullscreen
+	settings.get_node("Video/Mode/Options").selected = Save.user_data.get("video_mode") # Mode
+	settings.get_node("Video/Resolution/Options").selected = Save.user_data.get("video_resolution") # Resolution
 
 ##
 # Credits

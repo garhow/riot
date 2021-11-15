@@ -7,7 +7,8 @@ const USERDEFAULTS = {
 	"user_name": "Unnamed",
 	"video_fov": 70.0,
 	"video_fps": 60,
-	"video_fullscreen": false
+	"video_mode": 0,
+	"video_resolution": 1
 }
 
 var user_data : Dictionary = {}
