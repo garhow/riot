@@ -30,12 +30,19 @@ These are the default key bindings for playing Riot.
 - `Right Click`: Secondary fire
 - `R`: Reload
 
-## Running
-This game requires [Godot Engine](https://godotengine.org/) to run and compile.
+## Editing
+This game requires [Godot Engine](https://godotengine.org/) for editing.
 
 In order to acquire the game source, either clone the repository or download an archived release.
 
 When in the Godot dashboard, click the import button and navigate to the newly acquired source for Riot, and click import & edit.
+
+## Compiling
+This game requires [Godot Engine](https://godotengine.org/) to compile.
+
+Open a terminal, navigate to the root of the source and run `make`.
+
+The game should be compiled shortly and the binaries placed in a directory called `dist`.
 
 ## License
 Riot - Multiplayer team-based shooter based on Godot Engine — Copyright © 2021 Garrett Howard
