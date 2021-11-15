@@ -62,7 +62,4 @@ func toggle_menu():
 		menu.visible = false
 
 func toggle_console():
-	if console.visible == false:
-		console.visible = true
-	elif console.visible == true:
-		console.visible = false
+	console.visible = !console.visible

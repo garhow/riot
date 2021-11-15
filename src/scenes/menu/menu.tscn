@@ -622,6 +622,7 @@ text = "Cancel"
 [node name="Settings" type="Control" parent="Center" groups=[
 "submenu",
 ]]
+visible = false
 margin_left = 960.0
 margin_top = 540.0
 margin_right = 960.0
