@@ -28,8 +28,10 @@ func get_data():
 		user_data = USERDEFAULTS
 		save_data()
 	file.close()
+	Video.initialize()
 
 func save_data():
 	var file = File.new()
 	file.open(USERDATA, File.WRITE)
 	file.store_line(to_json(user_data))
+	Video.initialize()

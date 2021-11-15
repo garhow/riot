@@ -29,7 +29,6 @@ func _process(_delta):
 		toggle_menu()
 	if Input.is_action_just_pressed("toggle_console"):
 		toggle_console()
-	Engine.target_fps = Save.user_data.get("video_fps")
 
 func spawn_map(map : String):
 	main.add_child(maps[map].instance())

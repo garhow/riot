@@ -48,8 +48,9 @@ default_bus_layout="res://misc/default_bus_layout.tres"
 
 Game="*res://scenes/autoload/game.gd"
 Net="*res://scenes/autoload/net.gd"
-Save="*res://scenes/autoload/save.gd"
 Logger="*res://scenes/autoload/logger.gd"
+Save="*res://scenes/autoload/save.gd"
+Video="*res://scenes/autoload/video.gd"
 
 [debug]
 
