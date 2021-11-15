@@ -622,7 +622,6 @@ text = "Cancel"
 [node name="Settings" type="Control" parent="Center" groups=[
 "submenu",
 ]]
-visible = false
 margin_left = 960.0
 margin_top = 540.0
 margin_right = 960.0
@@ -639,9 +638,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -212.0
-margin_top = -125.0
+margin_top = -175.0
 margin_right = 212.0
-margin_bottom = 125.0
+margin_bottom = 175.0
 tab_align = 0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -682,13 +681,13 @@ ticks_on_borders = true
 [node name="Separator" type="HSeparator" parent="Center/Settings/Tabs/Mouse"]
 margin_top = 46.0
 margin_right = 400.0
-margin_bottom = 158.0
+margin_bottom = 258.0
 size_flags_vertical = 3
 
 [node name="SaveChanges" type="Button" parent="Center/Settings/Tabs/Mouse"]
-margin_top = 162.0
+margin_top = 262.0
 margin_right = 400.0
-margin_bottom = 196.0
+margin_bottom = 296.0
 text = "Save changes"
 
 [node name="User" type="VBoxContainer" parent="Center/Settings/Tabs"]
@@ -744,14 +743,14 @@ margin_right = 400.0
 margin_bottom = 42.0
 
 [node name="Label" type="Label" parent="Center/Settings/Tabs/Video/FOV"]
+margin_top = 20.0
 margin_right = 400.0
-margin_bottom = 22.0
+margin_bottom = 42.0
 text = "Field of View"
 
 [node name="Slider" type="HSlider" parent="Center/Settings/Tabs/Video/FOV"]
-margin_top = 26.0
 margin_right = 400.0
-margin_bottom = 42.0
+margin_bottom = 16.0
 size_flags_horizontal = 3
 theme = ExtResource( 1 )
 min_value = 60.0
@@ -762,30 +761,54 @@ scrollable = false
 tick_count = 6
 ticks_on_borders = true
 
-[node name="Separator" type="HSeparator" parent="Center/Settings/Tabs/Video"]
+[node name="Separator3" type="HSeparator" parent="Center/Settings/Tabs/Video"]
 margin_top = 46.0
 margin_right = 400.0
 margin_bottom = 50.0
 
-[node name="Fullscreen" type="CheckBox" parent="Center/Settings/Tabs/Video"]
+[node name="FPS" type="VBoxContainer" parent="Center/Settings/Tabs/Video"]
 margin_top = 54.0
 margin_right = 400.0
-margin_bottom = 88.0
+margin_bottom = 108.0
+
+[node name="Label" type="Label" parent="Center/Settings/Tabs/Video/FPS"]
+margin_right = 400.0
+margin_bottom = 22.0
+text = "FPS limit"
+
+[node name="Input" type="SpinBox" parent="Center/Settings/Tabs/Video/FPS"]
+margin_top = 26.0
+margin_right = 400.0
+margin_bottom = 54.0
+min_value = 1.0
+max_value = 120.0
+value = 60.0
+rounded = true
+
+[node name="Separator" type="HSeparator" parent="Center/Settings/Tabs/Video"]
+margin_top = 112.0
+margin_right = 400.0
+margin_bottom = 116.0
+
+[node name="Fullscreen" type="CheckBox" parent="Center/Settings/Tabs/Video"]
+margin_top = 120.0
+margin_right = 400.0
+margin_bottom = 154.0
 text = "Fullscreen"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Separator2" type="HSeparator" parent="Center/Settings/Tabs/Video"]
-margin_top = 92.0
+margin_top = 158.0
 margin_right = 400.0
-margin_bottom = 158.0
+margin_bottom = 162.0
 size_flags_vertical = 3
 
 [node name="SaveChanges" type="Button" parent="Center/Settings/Tabs/Video"]
-margin_top = 162.0
+margin_top = 166.0
 margin_right = 400.0
-margin_bottom = 196.0
+margin_bottom = 200.0
 text = "Save changes"
 
 [node name="Console" type="PanelContainer" parent="."]

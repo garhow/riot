@@ -6,6 +6,7 @@ const USERDEFAULTS = {
 	"mouse_sensitivity": 75.0,
 	"user_name": "Unnamed",
 	"video_fov": 70.0,
+	"video_fps": 60,
 	"video_fullscreen": false
 }
 
