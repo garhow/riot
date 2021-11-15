@@ -68,23 +68,21 @@ func _on_Settings_pressed():
 
 func _on_SaveChanges_pressed():
 	Save.user_data = {
-		"mouse": {
-			"sensitivity": settings.get_node("Mouse/Sensitivity/Slider").value
-		}, "user": {
-			"username": settings.get_node("User/Username/Input").text
-		}, "video": {
-			"fullscreen": settings.get_node("Video/Fullscreen").pressed
-		}
+		"mouse_sensitivity": settings.get_node("Mouse/Sensitivity/Slider").value,
+		"user_name": settings.get_node("User/Username/Input").text,
+		"video_fov": settings.get_node("Video/FOV/Slider").value,
+		"video_fullscreen": settings.get_node("Video/Fullscreen").pressed
 	}
 	Save.save_data()
 	
 func load_settings():
 	# Mouse
-	settings.get_node("Mouse/Sensitivity/Slider").value = Save.user_data.get("mouse").get("sensitivity")
+	settings.get_node("Mouse/Sensitivity/Slider").value = Save.user_data.get("mouse_sensitivity")
 	# User
-	settings.get_node("User/Username/Input").text = Save.user_data.get("user").get("username") # Username
+	settings.get_node("User/Username/Input").text = Save.user_data.get("user_name") # Username
 	# Video
-	settings.get_node("Video/Fullscreen").pressed = Save.user_data.get("video").get("fullscreen") # Fullscreen
+	settings.get_node("Video/FOV/Slider").value = Save.user_data.get("video_fov") # Fullscreen
+	settings.get_node("Video/Fullscreen").pressed = Save.user_data.get("video_fullscreen") # Fullscreen
 
 ##
 # Credits

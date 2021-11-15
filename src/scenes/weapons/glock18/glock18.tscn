@@ -1,17 +1,72 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://meshes/weapons/glock18/glock18.glb" type="PackedScene" id=1]
 [ext_resource path="res://scenes/weapons/glock18/glock18.gd" type="Script" id=4]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Reload"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/path = NodePath("glock18:translation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.7, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( -2.38419e-07, 0.500001, -0.5 ), Vector3( -2.38419e-07, 0.500001, -0.5 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("glock18:rotation_degrees")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.7, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( -15, 0, 0 ), Vector3( -15, 0, 0 ), Vector3( 0, 0, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("glock18/Magazine:translation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3, 0.6, 0.7, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.852513, 0.0918799, 0 ), Vector3( 1.55251, -1.70812, -0.00192344 ), Vector3( 1.27075, -3.47848, 0.30876 ), Vector3( 1.27075, -3.47848, 0.30876 ), Vector3( 1.55251, -1.70812, -0.00192344 ), Vector3( 0.852513, 0.0918799, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("glock18/Magazine:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3, 0.6, 0.7, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.0506677, 0.0272056, 1.20292e-05 ), Vector3( -9.94934, 0.0271952, 1.22866e-05 ), Vector3( -9.94934, 0.0271893, -20 ), Vector3( -9.94934, 0.0271893, -20 ), Vector3( -9.94934, 0.0271952, 1.22866e-05 ), Vector3( 0.0506677, 0.0272056, 1.20292e-05 ) ]
+}
 
 [node name="Glock 18" type="Spatial"]
 transform = Transform( 0.173589, -0.00454558, -0.984808, 0.026177, 0.999657, 1.24564e-09, 0.98447, -0.0257793, 0.173648, 0.5, -0.5, -0.5 )
 script = ExtResource( 4 )
 
 [node name="Animation" type="AnimationPlayer" parent="."]
+anims/Reload = SubResource( 1 )
 
 [node name="Tween" type="Tween" parent="."]
 
 [node name="glock18" parent="." instance=ExtResource( 1 )]
 
-[connection signal="animation_finished" from="Animation" to="." method="_on_Animation_animation_finished"]
-[connection signal="animation_started" from="Animation" to="." method="_on_Animation_animation_started"]
+[node name="Magazine" parent="glock18" index="4"]
+transform = Transform( 0.255742, 5.36928e-08, 5.34554e-05, 5.36928e-08, 0.255742, -9.95552e-05, -0.000121433, 0.000226157, 0.112579, 0.852513, 0.0918799, 0 )
+
+[editable path="glock18"]

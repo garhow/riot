@@ -40,6 +40,9 @@ func primary():
 func secondary():
 	pass
 
+func reload():
+	pass
+
 func _on_Animation_animation_started(_anim_name):
 	pass
 

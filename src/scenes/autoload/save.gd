@@ -3,13 +3,10 @@ extends Node
 const USERDATA = "user://user_data.json"
 
 const USERDEFAULTS = {
-	"mouse": {
-		"sensitivity": 75.0
-	}, "user": {
-		"username": "Unnamed"	
-	}, "video": {
-		"fullscreen": false
-	}
+	"mouse_sensitivity": 75.0,
+	"user_name": "Unnamed",
+	"video_fov": 70.0,
+	"video_fullscreen": false
 }
 
 var user_data : Dictionary = {}
@@ -25,7 +22,8 @@ func get_data():
 	file.open(USERDATA, File.READ)
 	var data = parse_json(file.get_as_text())
 	user_data = data
-	if user_data.keys() != USERDEFAULTS.keys():
+	if user_data.size() != USERDEFAULTS.size():
+		Logger.out([Logger.get_prefix("Game", "Warning"), "Your save data has been reset because it was outdated."])
 		user_data = USERDEFAULTS
 		save_data()
 	file.close()

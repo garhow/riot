@@ -739,16 +739,45 @@ margin_bottom = -12.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Fullscreen" type="CheckBox" parent="Center/Settings/Tabs/Video"]
+[node name="FOV" type="VBoxContainer" parent="Center/Settings/Tabs/Video"]
 margin_right = 400.0
-margin_bottom = 34.0
+margin_bottom = 42.0
+
+[node name="Label" type="Label" parent="Center/Settings/Tabs/Video/FOV"]
+margin_right = 400.0
+margin_bottom = 22.0
+text = "Field of View"
+
+[node name="Slider" type="HSlider" parent="Center/Settings/Tabs/Video/FOV"]
+margin_top = 26.0
+margin_right = 400.0
+margin_bottom = 42.0
+size_flags_horizontal = 3
+theme = ExtResource( 1 )
+min_value = 60.0
+max_value = 110.0
+step = 5.0
+value = 80.0
+scrollable = false
+tick_count = 6
+ticks_on_borders = true
+
+[node name="Separator" type="HSeparator" parent="Center/Settings/Tabs/Video"]
+margin_top = 46.0
+margin_right = 400.0
+margin_bottom = 50.0
+
+[node name="Fullscreen" type="CheckBox" parent="Center/Settings/Tabs/Video"]
+margin_top = 54.0
+margin_right = 400.0
+margin_bottom = 88.0
 text = "Fullscreen"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Separator" type="HSeparator" parent="Center/Settings/Tabs/Video"]
-margin_top = 38.0
+[node name="Separator2" type="HSeparator" parent="Center/Settings/Tabs/Video"]
+margin_top = 92.0
 margin_right = 400.0
 margin_bottom = 158.0
 size_flags_vertical = 3

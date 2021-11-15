@@ -29,7 +29,7 @@ func _physics_process(_delta): # Run once for each frame
 			rpc_unreliable_id(1, "update_peer", Game.player.translation, Game.player.rotation.y, Game.player.get_node("Head").rotation.x, Game.player.velocity)
 
 func get_player_data(): # Returns local player data
-	return {name=Save.user_data.get("user").get("username")}
+	return {name=Save.user_data.get("user_name")}
 
 func server_disconnect(): # Attempts to gracefully close a server or disconnect from a server
 	if get_tree().get_network_unique_id() == 1:
@@ -86,7 +86,7 @@ remote func update_peer(t : Vector3, ry : float, hrx : float , v : Vector3): # U
 # bus: the name of the audio bus
 # pos: the global transform of the audio player
 remotesync func network_sound(path, bus, _pos):
-	var sound
+	var sound #: AudioStreamPlayer3D
 	if _pos != null:
 		sound = AudioStreamPlayer3D.new()
 		Game.main.add_child(sound)

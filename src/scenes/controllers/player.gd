@@ -6,7 +6,7 @@ class_name Player
 ##
 
 # Input variables
-var mouse_sensitivity = Save.user_data.get("mouse").get("sensitivity")
+var mouse_sensitivity = Save.user_data.get("mouse_sensitivity")
 var camera_rotation : Vector2 = Vector2.ZERO
 var movement_input : Vector2 = Vector2.ZERO
 
@@ -32,6 +32,7 @@ var selected_weapon : int = 1
 const SWAY : float = 35.0
 
 # Node variables
+onready var camera = get_node("Head/Camroot/Camera")
 onready var head = get_node("Head")
 onready var hud = get_node("Head/Camroot/Camera/HUD")
 onready var weaponlocation = get_node("Head/WeaponLocation")
@@ -44,6 +45,7 @@ onready var weaponroot = get_node("Head/Hands")
 func _ready():
 	Game.player = self
 	weaponroot.set_as_toplevel(true)
+	camera.fov = Save.user_data.get("video_fov")
 
 func _input(event):
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
@@ -79,6 +81,8 @@ func process_combat():
 				weaponroot.get_node(str(selected_weapon)).primary()
 			elif Input.is_action_just_pressed("alt_fire"):
 				weaponroot.get_node(str(selected_weapon)).secondary()
+			elif Input.is_action_just_pressed("reload"):
+				weaponroot.get_node(str(selected_weapon)).reload()
 	else:
 		var knife = load("res://scenes/weapons/knife.tscn").instance()
 		var shotgun = load("res://scenes/weapons/shotgun.tscn").instance()

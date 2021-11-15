@@ -17,10 +17,12 @@ func primary():
 		if cast.is_colliding():
 			var target = cast.get_collider()
 			if target.is_in_group("player") or target.is_in_group("dummy"):
-				print(cast.global_transform.origin.distance_to(cast.get_collision_point()))
 				var damage = MAX_DAMAGE
 				Game.player.hud.hit_enemy(damage)
 				target.health -= damage
 
 func secondary():
 	pass
+
+func reload():
+	$Animation.play("Reload")

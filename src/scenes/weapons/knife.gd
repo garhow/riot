@@ -24,3 +24,6 @@ func secondary():
 				var damage = 60
 				Game.player.hud.hit_enemy(damage)
 				target.health -= damage
+
+func reload():
+	pass

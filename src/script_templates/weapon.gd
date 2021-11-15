@@ -1,10 +1,13 @@
 extends %BASE%
 
 func _ready()%VOID_RETURN%:
-    pass
+	pass
 
 func primary()%VOID_RETURN%:
-    pass
+	pass
 
 func secondary()%VOID_RETURN%:
-    pass
+	pass
+
+func reload()%VOID_RETURN%:
+	pass
