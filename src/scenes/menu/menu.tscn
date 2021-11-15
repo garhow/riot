@@ -622,6 +622,7 @@ text = "Cancel"
 [node name="Settings" type="Control" parent="Center" groups=[
 "submenu",
 ]]
+visible = false
 margin_left = 960.0
 margin_top = 540.0
 margin_right = 960.0
@@ -647,7 +648,6 @@ __meta__ = {
 }
 
 [node name="Mouse" type="VBoxContainer" parent="Center/Settings/Tabs"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 12.0
@@ -682,13 +682,13 @@ ticks_on_borders = true
 [node name="Separator" type="HSeparator" parent="Center/Settings/Tabs/Mouse"]
 margin_top = 46.0
 margin_right = 400.0
-margin_bottom = 258.0
+margin_bottom = 344.0
 size_flags_vertical = 3
 
 [node name="SaveChanges" type="Button" parent="Center/Settings/Tabs/Mouse"]
-margin_top = 262.0
+margin_top = 348.0
 margin_right = 400.0
-margin_bottom = 296.0
+margin_bottom = 382.0
 text = "Save changes"
 
 [node name="User" type="VBoxContainer" parent="Center/Settings/Tabs"]
@@ -729,6 +729,7 @@ margin_bottom = 296.0
 text = "Save changes"
 
 [node name="Video" type="VBoxContainer" parent="Center/Settings/Tabs"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 12.0
@@ -813,10 +814,33 @@ margin_top = 196.0
 margin_right = 400.0
 margin_bottom = 200.0
 
-[node name="Resolution" type="VBoxContainer" parent="Center/Settings/Tabs/Video"]
+[node name="Preset" type="VBoxContainer" parent="Center/Settings/Tabs/Video"]
 margin_top = 204.0
 margin_right = 400.0
 margin_bottom = 264.0
+
+[node name="Label" type="Label" parent="Center/Settings/Tabs/Video/Preset"]
+margin_right = 400.0
+margin_bottom = 22.0
+text = "Graphics Preset"
+
+[node name="Options" type="OptionButton" parent="Center/Settings/Tabs/Video/Preset"]
+margin_top = 26.0
+margin_right = 400.0
+margin_bottom = 60.0
+text = "Low"
+items = [ "Low", null, false, 0, null, "Medium", null, false, 1, null, "High", null, false, 2, null, "Ultra", null, false, 3, null ]
+selected = 0
+
+[node name="Separator5" type="HSeparator" parent="Center/Settings/Tabs/Video"]
+margin_top = 268.0
+margin_right = 400.0
+margin_bottom = 272.0
+
+[node name="Resolution" type="VBoxContainer" parent="Center/Settings/Tabs/Video"]
+margin_top = 276.0
+margin_right = 400.0
+margin_bottom = 336.0
 
 [node name="Label" type="Label" parent="Center/Settings/Tabs/Video/Resolution"]
 margin_right = 400.0
@@ -829,15 +853,15 @@ margin_right = 400.0
 margin_bottom = 60.0
 
 [node name="Separator2" type="HSeparator" parent="Center/Settings/Tabs/Video"]
-margin_top = 268.0
+margin_top = 340.0
 margin_right = 400.0
-margin_bottom = 298.0
+margin_bottom = 344.0
 size_flags_vertical = 3
 
 [node name="SaveChanges" type="Button" parent="Center/Settings/Tabs/Video"]
-margin_top = 302.0
+margin_top = 348.0
 margin_right = 400.0
-margin_bottom = 336.0
+margin_bottom = 382.0
 text = "Save changes"
 
 [node name="Console" type="PanelContainer" parent="."]

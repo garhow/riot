@@ -76,6 +76,7 @@ func _on_SaveChanges_pressed():
 		"video_fov": settings.get_node("Video/FOV/Input").value,
 		"video_fps": settings.get_node("Video/FPS/Input").value,
 		"video_mode": settings.get_node("Video/Mode/Options").selected,
+		"video_preset": settings.get_node("Video/Preset/Options").selected,
 		"video_resolution": settings.get_node("Video/Resolution/Options").selected
 	}
 	Save.save_data()
@@ -89,6 +90,7 @@ func load_settings():
 	settings.get_node("Video/FOV/Input").value = Save.user_data.get("video_fov") # Field of View
 	settings.get_node("Video/FPS/Input").value = Save.user_data.get("video_fps") # FPS limit
 	settings.get_node("Video/Mode/Options").selected = Save.user_data.get("video_mode") # Mode
+	settings.get_node("Video/Preset/Options").selected = Save.user_data.get("video_preset") # Preset
 	settings.get_node("Video/Resolution/Options").selected = Save.user_data.get("video_resolution") # Resolution
 
 ##

@@ -8,6 +8,7 @@ const USERDEFAULTS = {
 	"video_fov": 70.0,
 	"video_fps": 60,
 	"video_mode": 0,
+	"video_preset": 2,
 	"video_resolution": 1
 }
 
