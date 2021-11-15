@@ -1,5 +1,5 @@
 # Riot
-Riot is a free multiplayer team-based first-person shooter based on [Godot Engine](https://godotengine.org/). The game features many fundamental game mechanics inspired by games such as [Counter-Strike](https://counter-strike.net/) or [Valorant](https://playvalorant.com/). 
+Riot is a free multiplayer first-person shooter based on [Godot Engine](https://godotengine.org/). The game features many fundamental game mechanics inspired by games such as [Counter-Strike](https://counter-strike.net/) or [Valorant](https://playvalorant.com/). 
 
 The game is in *very* early stages of development and bug reports are highly appreciated!
 
@@ -21,12 +21,14 @@ These are the default key bindings for playing Riot.
 - `S`: Move backward
 - `A`: Move left
 - `D`: Move right
+- `Control`: Crouch
 - `Shift`: Walk slowly
 - `Space`: Jump or climb
 
 ### Combat
 - `Left Click`: Fire
-- `Right Click` Secondary fire
+- `Right Click`: Secondary fire
+- `R`: Reload
 
 ## Running
 This game requires [Godot Engine](https://godotengine.org/) to run and compile.
