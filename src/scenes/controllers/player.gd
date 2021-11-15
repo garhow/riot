@@ -91,6 +91,9 @@ func process_combat():
 		weaponroot.get_node(str(selected_weapon)).visible = true
 
 func process_input(delta : float):
+	# Joystick camera rotation
+	camera_rotation += Vector2((Input.get_action_strength("look_up") - Input.get_action_strength("look_down")) * mouse_sensitivity * 0.05, (Input.get_action_strength("look_left") - Input.get_action_strength("look_right")) * mouse_sensitivity * 0.05)
+	
 	movement_input.x = int(Input.is_action_pressed("move_backward")) - int(Input.is_action_pressed("move_forward"))
 	movement_input.y = int(Input.is_action_pressed("move_right")) - int(Input.is_action_pressed("move_left"))
 	
