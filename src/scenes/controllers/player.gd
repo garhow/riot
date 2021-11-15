@@ -82,10 +82,13 @@ func process_combat():
 	else:
 		var knife = load("res://scenes/weapons/knife.tscn").instance()
 		var shotgun = load("res://scenes/weapons/shotgun.tscn").instance()
+		var pistol = load("res://scenes/weapons/glock18/glock18.tscn").instance()
 		knife.name = "1"
 		shotgun.name = "2"
+		pistol.name = "3"
 		weaponroot.add_child(knife)
 		weaponroot.add_child(shotgun)
+		weaponroot.add_child(pistol)
 		for weapon in weaponroot.get_children():
 			weapon.visible = false
 		weaponroot.get_node(str(selected_weapon)).visible = true
@@ -144,12 +147,7 @@ func air_move(_delta : float):
 
 func ground_move(_delta : float):
 	if not grounded:
-		var sound = AudioStreamPlayer3D.new()
-		add_child(sound)
-		sound.bus = "Sound Effects"
-		sound.stream = load("res://sounds/player/walk"+str(floor(rand_range(1, 3)))+".mp3")
-		sound.stream.loop = false
-		sound.play()
+		Net.rpc_unreliable("network_sound", "res://sounds/player/walk"+str(floor(rand_range(1, 3)))+".mp3", "SFX", global_transform.origin)
 	grounded = true
 	if jumping:
 		grounded = false

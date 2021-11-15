@@ -66,10 +66,10 @@ func create_client(address : String, port : int): # Connects to a server
 	get_tree().set_network_peer(network)
 	Logger.out([Logger.get_prefix("Networking", "Info"), "Now connecting to ", address, ":", str(port), "!"])
 
-# Var details:
+### update_peer(): updates the sender's peer instance for the reciever
 # ry: body rotation on the y axis
 # hrx: head rotation on the x axis
-# t is transform/position 
+# t is transform/position
 remote func update_peer(t : Vector3, ry : float, hrx : float , v : Vector3): # Updates a peer node with information given by the server
 	# Harvey298 - Simple anti-cheat - Hack: Jump Boost - UNTESTED
 	var max_jump : float = 6.4 # same value as JUMP_FORCE in player.gd
@@ -80,6 +80,24 @@ remote func update_peer(t : Vector3, ry : float, hrx : float , v : Vector3): # U
 	peer.rotation.y = ry
 	peer.get_node("Head").rotation.x = hrx
 	peer.velocity = v
+
+### network_sound(): requests to play a sound for the reciever
+# path: the path to the sound file
+# bus: the name of the audio bus
+# pos: the global transform of the audio player
+remotesync func network_sound(path, bus, _pos):
+	var sound
+	if _pos != null:
+		sound = AudioStreamPlayer3D.new()
+		Game.main.add_child(sound)
+		sound.global_transform.origin = _pos
+	else:
+		sound = AudioStreamPlayer.new()
+		Game.main.add_child(sound)
+	sound.bus = bus
+	sound.stream = load(path)
+	sound.stream.loop = false
+	sound.play()
 
 remote func apply_player_data(): # Applies player data given to by the server
 	for id in player_data.keys():

@@ -14,6 +14,7 @@ func _process(_delta):
 	if not $Animation.is_playing() and not $Tween.is_active():
 		if shot > 0:
 			$Animation.play("Pump")
+			Net.rpc("network_sound", "res://sounds/weapons/shotgun/pump.mp3", "SFX", global_transform.origin)
 
 func primary():
 	if not $Animation.is_playing() and not $Tween.is_active():
@@ -26,8 +27,7 @@ func primary():
 		$Tween.interpolate_property(self, "rotation_degrees", Vector3(degrees.x, degrees.y, degrees.z+multiplier*5), degrees, 0.2, Tween.TRANS_LINEAR, Tween.TRANS_LINEAR)
 		$Tween.start()
 		shot += 1
-		var flash = muzzle_flash.instance()
-		flash.emitting = true
+		Net.rpc("network_sound", "res://sounds/weapons/shotgun/fire.mp3", "SFX", global_transform.origin)
 		if cast.is_colliding():
 			var target = cast.get_collider()
 			if target.is_in_group("player") or target.is_in_group("dummy"):

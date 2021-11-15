@@ -42,7 +42,7 @@ far = 1024.0
 [node name="HUD" parent="Head/Camroot/Camera" instance=ExtResource( 2 )]
 
 [node name="Hands" type="Position3D" parent="Head"]
-transform = Transform( 0.099313, 0, 0.0117017, 0, 0.1, 0, -0.0117017, 0, 0.099313, 0.115, -0.12, -0.425 )
+transform = Transform( 0.099313, 0, 0.0117017, 0, 0.1, 0, -0.0117017, 0, 0.099313, 0.115, -0.15, -0.425 )
 
 [node name="WeaponLocation" type="Position3D" parent="Head"]
 transform = Transform( 0.099313, 0, 0.0117017, 0, 0.1, 0, -0.0117017, 0, 0.099313, 0.115, -0.15, -0.425 )
