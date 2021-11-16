@@ -45,7 +45,7 @@ Open a terminal, navigate to the root of the source and run `make`.
 The game should be compiled shortly and the binaries placed in a directory called `dist`.
 
 ## License
-Riot - Multiplayer team-based shooter based on Godot Engine — Copyright © 2021 Garrett Howard
+Riot - Free multiplayer shooter based on Godot Engine — Copyright © 2021 Garrett Howard
 
 All assets are distributed under the terms of the [Creative Commons Attribution-ShareAlike License version 4.0 (CC BY-SA 4.0)](https://creativecommons.org/licenses/by-sa/4.0/legalcode)
 
