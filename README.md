@@ -5,7 +5,7 @@ The game is in *very* early stages of development and bug reports are highly app
 
 The Riot homepage can be found at [riot.mersh.com](https://riot.mersh.com/).
 
-The latest release binaries (source included) can be found [here](https://git.mersh.com/riot/riot/releases/latest).
+The latest stable release binaries (source included) can be found [here](https://git.mersh.com/riot/riot/releases/latest).
 
 ## How to play
 These are the default key bindings for playing Riot.
