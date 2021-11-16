@@ -12,3 +12,9 @@ build:
 
 clean:
 	rm -rf dist/
+
+install:
+	cp dist/Riot-Linux.$$(arch) /usr/local/bin/riot
+
+uninstall:
+	rm /usr/local/bin/riot
