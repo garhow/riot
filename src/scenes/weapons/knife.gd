@@ -1,5 +1,7 @@
 extends Spatial
 
+const RATE = "semi"
+
 onready var cast : RayCast = get_node("../../Meleecast")
 
 func _ready():

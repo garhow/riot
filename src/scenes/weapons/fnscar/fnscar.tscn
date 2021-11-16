@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://meshes/weapons/fnscar/fnscar.glb" type="PackedScene" id=1]
+[ext_resource path="res://scenes/weapons/fnscar/fnscar.gd" type="Script" id=2]
+
+[node name="FN SCAR" type="Spatial"]
+transform = Transform( 0.173589, -0.00454558, -0.984808, 0.026177, 0.999657, 1.24564e-09, 0.98447, -0.0257793, 0.173648, 0.5, -0.5, 0.2 )
+script = ExtResource( 2 )
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="fnscar" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0.99604, 0.0175381, -0.0871556, -0.0174524, 0.999846, 0.00174533, 0.0871728, -0.000217345, 0.996194, 0, 0, 0 )
+
+[editable path="fnscar"]

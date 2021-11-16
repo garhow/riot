@@ -1,6 +1,7 @@
 extends Spatial
 
 const MAX_DAMAGE = 128
+const RATE = "semi"
 
 var shot : int = 0
 var muzzle_flash = preload("res://particles/weapons/shotgun/muzzle_flash.tscn")

@@ -1,8 +1,8 @@
 extends Spatial
 
-const MAX_DAMAGE = 24
+const MAX_DAMAGE = 48
 const MIN_DAMAGE = 8
-const RATE = "semi"
+const RATE = "auto"
 
 onready var cast : RayCast = get_node("../../Guncast")
 
@@ -11,10 +11,10 @@ func primary():
 		var origin = transform.origin
 		var degrees = rotation_degrees
 		var multiplier = rand_range(0.5, 2)
-		$Tween.interpolate_property(self, "translation", Vector3(origin.x, origin.y+multiplier/4, origin.z+multiplier), origin, 0.1, Tween.TRANS_SINE, Tween.TRANS_SINE)
-		$Tween.interpolate_property(self, "rotation_degrees", Vector3(degrees.x, degrees.y, degrees.z+multiplier*-10), degrees, 0.1, Tween.TRANS_SINE, Tween.TRANS_SINE)
+		$Tween.interpolate_property(self, "translation", Vector3(origin.x, origin.y, origin.z+multiplier), origin, 0.1, Tween.TRANS_SINE, Tween.TRANS_SINE)
+		$Tween.interpolate_property(self, "rotation_degrees", Vector3(degrees.x, degrees.y, degrees.z+multiplier*-2), degrees, 0.1, Tween.TRANS_SINE, Tween.TRANS_SINE)
 		$Tween.start()
-		Net.rpc("network_sound", "res://sounds/weapons/glock18/fire.mp3", "SFX", global_transform.origin)
+		Net.rpc("network_sound", "res://sounds/weapons/fnscar/fire.mp3", "SFX", global_transform.origin)
 		if cast.is_colliding():
 			var target = cast.get_collider()
 			if target.is_in_group("player") or target.is_in_group("dummy"):
@@ -26,4 +26,4 @@ func secondary():
 	pass
 
 func reload():
-	$Animation.play("Reload")
+	pass

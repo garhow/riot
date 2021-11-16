@@ -77,8 +77,12 @@ func _physics_process(delta):
 func process_combat():
 	if weaponroot.get_child_count() > 0:
 		if Game.menu.visible == false:
-			if Input.is_action_just_pressed("fire"):
-				weaponroot.get_node(str(selected_weapon)).primary()
+			if weaponroot.get_node(str(selected_weapon)).RATE == "semi":
+				if Input.is_action_just_pressed("fire"):
+					weaponroot.get_node(str(selected_weapon)).primary()
+			elif weaponroot.get_node(str(selected_weapon)).RATE == "auto":
+				if Input.is_action_pressed("fire"):
+					weaponroot.get_node(str(selected_weapon)).primary()
 			elif Input.is_action_just_pressed("alt_fire"):
 				weaponroot.get_node(str(selected_weapon)).secondary()
 			elif Input.is_action_just_pressed("reload"):
@@ -87,12 +91,15 @@ func process_combat():
 		var knife = load("res://scenes/weapons/knife.tscn").instance()
 		var shotgun = load("res://scenes/weapons/shotgun.tscn").instance()
 		var pistol = load("res://scenes/weapons/glock18/glock18.tscn").instance()
+		var scar = load("res://scenes/weapons/fnscar/fnscar.tscn").instance()
 		knife.name = "1"
 		shotgun.name = "2"
 		pistol.name = "3"
+		scar.name = "4"
 		weaponroot.add_child(knife)
 		weaponroot.add_child(shotgun)
 		weaponroot.add_child(pistol)
+		weaponroot.add_child(scar)
 		for weapon in weaponroot.get_children():
 			weapon.visible = false
 		weaponroot.get_node(str(selected_weapon)).visible = true

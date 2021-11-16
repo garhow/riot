@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/fire.mp3-5b66c07b41a34722eccf08ad4aadf7aa.mp3str"
+
+[deps]
+
+source_file="res://sounds/weapons/fnscar/fire.mp3"
+dest_files=[ "res://.import/fire.mp3-5b66c07b41a34722eccf08ad4aadf7aa.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
