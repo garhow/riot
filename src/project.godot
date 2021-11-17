@@ -37,7 +37,7 @@ config/description="A multiplayer team-based shooter"
 run/main_scene="res://scenes/main.tscn"
 config/icon="res://misc/icon.png"
 config/windows_native_icon="res://misc/icon.ico"
-config/version="0.1.0-rc2"
+config/version="0.1.0-rc3"
 config/protocol_version=7
 
 [audio]
