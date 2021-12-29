@@ -177,9 +177,7 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="Credits" type="Control" parent="Center" groups=[
-"submenu",
-]]
+[node name="Credits" type="Control" parent="Center" groups=["submenu"]]
 visible = false
 margin_left = 960.0
 margin_top = 540.0
@@ -429,9 +427,7 @@ margin_bottom = 360.0
 theme = ExtResource( 1 )
 text = "Close"
 
-[node name="Join" type="Control" parent="Center" groups=[
-"submenu",
-]]
+[node name="Join" type="Control" parent="Center" groups=["submenu"]]
 visible = false
 margin_left = 960.0
 margin_top = 540.0
@@ -554,9 +550,7 @@ margin_bottom = 210.0
 theme = ExtResource( 5 )
 text = "Connect"
 
-[node name="Connecting" type="Control" parent="Center" groups=[
-"submenu",
-]]
+[node name="Connecting" type="Control" parent="Center" groups=["submenu"]]
 visible = false
 margin_left = 960.0
 margin_top = 540.0
@@ -619,9 +613,7 @@ theme = ExtResource( 1 )
 custom_fonts/font = SubResource( 7 )
 text = "Cancel"
 
-[node name="Settings" type="Control" parent="Center" groups=[
-"submenu",
-]]
+[node name="Settings" type="Control" parent="Center" groups=["submenu"]]
 visible = false
 margin_left = 960.0
 margin_top = 540.0
@@ -673,7 +665,8 @@ margin_bottom = 42.0
 size_flags_horizontal = 3
 theme = ExtResource( 1 )
 min_value = 0.1
-max_value = 300.0
+max_value = 1000.0
+step = 50.0
 value = 0.1
 scrollable = false
 tick_count = 11

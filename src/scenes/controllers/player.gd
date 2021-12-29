@@ -28,7 +28,8 @@ const MAX_HEALTH : int = 100
 var health : int = MAX_HEALTH
 var selected_weapon : int = 1
 
-# Local variables
+# Camera variables
+const CAMERA_ACCELERATION : float = 24.0
 const SWAY : float = 35.0
 
 # Node variables
@@ -49,7 +50,7 @@ func _ready():
 
 func _input(event):
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		camera_rotation = Vector2(-event.relative.y * mouse_sensitivity * 0.001, -event.relative.x * mouse_sensitivity * 0.001)
+		camera_rotation = Vector2(-event.relative.y * mouse_sensitivity * 0.002, -event.relative.x * mouse_sensitivity * 0.002)
 	
 	if event is InputEventMouseButton and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED and event.is_pressed():
 		if event.button_index == BUTTON_WHEEL_UP or event.button_index == BUTTON_WHEEL_DOWN:
@@ -144,9 +145,8 @@ func process_movement(delta : float):
 	velocity = move_and_slide(velocity, Vector3.UP, true)
 
 func process_rotation(delta : float):
-	$Head.rotate_x(deg2rad(camera_rotation.x))
-	$Head.rotation.x = clamp($Head.rotation.x, deg2rad(-89), deg2rad(89))
-	rotate_y(deg2rad(camera_rotation.y))
+	$Head.rotation.x += lerp_angle(0, clamp(deg2rad(camera_rotation.x), deg2rad(-89), deg2rad(89)), CAMERA_ACCELERATION * delta)
+	rotation.y += lerp_angle(0, deg2rad(camera_rotation.y), CAMERA_ACCELERATION * delta)
 	weaponroot.global_transform.origin = weaponlocation.global_transform.origin
 	weaponroot.rotation.x = lerp_angle(weaponroot.rotation.x, head.rotation.x, SWAY * delta)
 	weaponroot.rotation.y = lerp_angle(weaponroot.rotation.y, rotation.y, SWAY * delta)
