@@ -3,10 +3,6 @@ Riot is a free multiplayer first-person shooter based on [Godot Engine](https://
 
 The game is in *very* early stages of development and bug reports are highly appreciated!
 
-The Riot homepage can be found at [riot.mersh.com](https://riot.mersh.com/).
-
-The latest stable release binaries (source included) can be found [here](https://git.mersh.com/riot/riot/releases/latest).
-
 ## How to play
 These are the default key bindings for playing Riot.
 
